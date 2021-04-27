@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 # Create your models here.
 class Usuario(models.Model):
@@ -13,7 +14,7 @@ class Aviso(models.Model):
     Motivo = models.CharField(max_length=15)
     Titulo = models.CharField(max_length=30)
     Comuna = models.CharField(max_length=30)
-    Fecha = models.DateTimeField()
+    Fecha = models.DateTimeField(default=datetime.now())
     Tipo_Animal = models.CharField(max_length=30)
     Sexo = models.CharField(max_length=15)
     Nombre_De_Usuario = models.ForeignKey(Usuario)
