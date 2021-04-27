@@ -3,13 +3,13 @@ from django.db import models
 # Create your models here.
 class Usuario(models.Model):
     Nombre = models.CharField(max_length=30)
-    Nombre_De_Usuario = models.CharField(max_length=30)
+    Nombre_De_Usuario = models.CharField(primary_key=True, max_length=30)
     Fecha_De_Nacimiento = models.DateField()
     Email = models.EmailField()
     Contraseña = models.CharField(max_length=15)
 
 class Aviso(models.Model):
-    Id = models.IntegerField()
+    Id = models.IntegerField(primary_key=True)
     Motivo = models.CharField(max_length=15)
     Titulo = models.CharField(max_length=30)
     Comuna = models.CharField(max_length=30)
