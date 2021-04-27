@@ -16,7 +16,7 @@ class Aviso(models.Model):
     Fecha = models.DateTimeField()
     Tipo_Animal = models.CharField(max_length=30)
     Sexo = models.CharField(max_length=15)
-    Nombre_De_Usuario = models.CharField(max_length=30)
+    Nombre_De_Usuario = models.ForeignKey(Usuario)
     Descripcion = models.CharField(max_length=250)
     Foto = models.ImageField()
     Estado_del_Aviso = models.BooleanField()
