@@ -1,0 +1,171 @@
+div.palido {
+    background-color: #f1eae0b2;
+    border-radius: 4px;
+}
+form {
+    padding-top:5px;
+    }
+
+.informe {
+    width: 85%;
+    margin: auto;
+    margin-top: 50px;
+    padding: 10px;
+}
+
+.informe h3{
+    color:#5a4c49;
+    text-shadow: 2px 2px #c7c6c1;
+    font-size: 35px;
+    margin: 25px 0 25px 25px;
+    text-decoration: underline;
+}
+
+.informe h4 {
+    color:#5a4c49;
+    text-shadow: 2px 2px #c7c6c1;
+    background-color: transparent;
+    border: 0px; 
+    font-size: 18px;
+    margin-left: 20px;
+    margin-top: 5px;
+    margin-right : 0;
+}
+.informe .linea{
+    display: inline;
+}
+
+
+.informe .entrada{
+    display: flex;
+    align-items: baseline;
+}
+
+.informe input,.informe select{
+    margin-left: 5%;
+    border-radius: 5px;
+    box-shadow: 5px 5px gray;
+}
+
+.informe input{
+    width: 100px;
+}
+
+.informe .especial{
+    width: fit-content;
+    box-shadow: 0 0 gray;
+}
+
+button{
+    width: fit-content;
+    height: 30px;
+    font-size: 13px;
+    border-radius: 10px;
+    background-color: #5a4c49;
+    color: aliceblue;
+    padding: 0 5px;
+}
+button:hover{
+    opacity: 0.5;
+}
+.buttons{
+    display: flex;
+    width: 700px;
+    margin: auto;
+    justify-content: center;
+    padding: 0 25px;
+}
+
+
+.error {
+    width: 70%;
+    margin: auto;
+    margin-top:50px;
+    background-color: #8c5c6c;
+    color: #c7c6c1;
+    font-size: 25px;
+    padding: 10px 25px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+@media screen and (max-width:1400px){
+    .modal-content2 h4, .modal-content2 .buttons{
+        width: 600px;
+    } 
+    .modal-content2{
+        width: 75%;
+    }
+   }
+
+   @media screen and (max-width:1100px){
+    .modal-content2 h4, .modal-content2 .buttons{
+        width: 400px;
+    } 
+    .informe{
+        width: 90%;
+    }
+    .informe h3{
+        font-size: 30px;
+    }
+    .informe h4{
+        font-size: 15px;
+    }
+   }
+   
+   @media screen and (max-width:800px){
+       .modal-content2{
+           width: 80%;
+       }
+       .informe .entrada{
+           display: block;
+       }
+       .informe{
+        width: 70%;    
+        }
+       .informe h4{
+           display: inline;
+       }
+        .informe h4{
+        font-size: 20px;
+        }
+   }
+
+   @media screen and (max-width:725px){
+       .enlaces{
+        width: 90%;
+    }
+        .modal-content2{
+        width: 90%;
+    }
+        .modal-content2 h4, .modal-content2 .buttons{
+        width: 350px;
+   }
+        .modal-content2 .buttons{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+
+        .informe{
+            width: 70%;
+        }
+
+        .informe h4{
+            font-size: 20px;
+        }
+
+        .informe input{
+            width: 75px;
+        }
+}
+
+   @media screen and (max-width:580px){
+        .modal-content2{
+            width: 95%;
+        }
+
+        .modal-content2 h4, .modal-content2 .buttons{
+            width: 300px;
+   }
+}
