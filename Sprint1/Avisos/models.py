@@ -1,13 +1,11 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Usuario(models.Model):
-    Nombre = models.CharField(max_length=30)
-    Nombre_De_Usuario = models.CharField(primary_key=True, max_length=30)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     Fecha_De_Nacimiento = models.DateField()
-    Email = models.EmailField()
-    Contraseña = models.CharField(max_length=15)
 
 class Aviso(models.Model):
     Id = models.IntegerField(primary_key=True)
