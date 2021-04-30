@@ -26,8 +26,6 @@ body {
 }
 
 #barra{
-    margin: 0;
-    padding: 0;
     list-style: none;
     text-transform: uppercase;
     background-color: #c7c6c1;
