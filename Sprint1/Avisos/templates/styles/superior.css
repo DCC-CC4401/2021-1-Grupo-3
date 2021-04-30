@@ -7,12 +7,13 @@ body {
 }
 
 .topnav {
-  overflow: hidden;
-  background-color: #f6f6f6;
+    overflow: hidden;
+    background-color: #f6f6f6;
 }
 
 .topnav img{
-    margin-left: 10px;
+    margin-left: 20px;
+    width: 8%;
 }
 
 #portada {
@@ -24,7 +25,7 @@ body {
 .topnav a{
     float: right;
     text-align: center;
-    padding: 30px 25px;
+    padding: 40px 25px;
     text-decoration: none;
     font-size: 17px;
     color: black;
