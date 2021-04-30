@@ -1,11 +1,42 @@
+body {
+    background-color: #A7E351;
+    margin:0;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #f6f6f6;
+}
+
+.topnav img{
+    margin-left: 10px;
+}
+
+.topnav a{
+    float: right;
+    text-align: center;
+    padding: 30px 25px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #f2f2f2;
+  color: black;
+}
+
 #barra{
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            text-transform: uppercase;
-        }
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-transform: uppercase;
+    background-color: #c7c6c1;
+    }
     
 #barra li{
-            display: inline;
-            margin: 0 20px;
-        }
+    display: inline;
+    margin: 0 20px;
+    }
+
+
+
