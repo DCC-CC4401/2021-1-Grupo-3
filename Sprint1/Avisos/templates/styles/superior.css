@@ -1,6 +1,9 @@
 body {
     background-color: #A7E351;
     margin:0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+            sans-serif, Apple Color Emoji, Segoe UI Emoji;
+            margin: 0;
 }
 
 .topnav {
@@ -18,22 +21,34 @@ body {
     padding: 30px 25px;
     text-decoration: none;
     font-size: 17px;
+    color: black;
 }
 
 .topnav a:hover {
-  background-color: #f2f2f2;
+  background-color: #c8c8c8;
   color: black;
 }
 
 #barra{
     list-style: none;
-    text-transform: uppercase;
-    background-color: #c7c6c1;
+    overflow: hidden;
+    background-color: #f6f6f6;
+    margin-left: 100px;
+    margin-right: 100px;
     }
     
-#barra li{
-    display: inline;
-    margin: 0 20px;
+#barra li a{
+    float: left;
+    text-align: center;
+    padding: 20px 120px;
+    text-decoration: none;
+    font-size: 17px;
+    color: black;
+    }
+
+#barra li a:hover{
+    background-color: #c8c8c8;
+    color: black;
     }
 
 
