@@ -18,7 +18,7 @@
             <!-- Esta parte hay que arreglarla cuando se creen los usuarios -->
             <a class="link" href="{% url 'logout_user' %}">Cerrar sesión</a>
             {% else %}
-            <h5>Ingrese sesión</h5>
+            <h5>Iniciar sesión</h5>
             <form method="post">
                 {% csrf_token %}
                 <div class="form-group">

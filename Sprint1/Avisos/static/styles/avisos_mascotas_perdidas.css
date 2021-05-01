@@ -24,13 +24,20 @@ body, html {
   background-color: #777;
 }
 
+.tabs {
+  margin-left: 100px;
+  margin-right:100px;
+}
+
 /* Style the tab content (and add height:100% for full page content) */
 .tabcontent {
-  color: white;
+  color: black;
   display: none;
   padding: 100px 20px;
   height: 100%;
+  margin-left:100px;
+  margin-right: 100px;
 }
 
-#Todos_los_Avisos {background-color: rgb(3, 119, 197);}
-#Mis_Avisos {background-color: green;}
+#Todos_los_Avisos {background-color: #f6f6f6;}
+#Mis_Avisos {background-color: #f6f6f6;}
