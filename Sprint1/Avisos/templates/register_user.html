@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Registro</title>
-    </head>
-    <body>
-         <h1> Registro </h1>
-         <form method="post">
-               {% csrf_token %}
-               <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id=nombre name="nombre" required>
-             </div>
-            <div class="form-group">
-               <label for="nombre_usuario">Nombre de Usuario</label>
-               <input type="text" class="form-control" id=nombre_usuario name="nombre_usuario" required>
-            </div>
-            <div class="form-group">
-               <label for="contraseña">Contraseña</label>
-               <input type="password" class="form-control" id="contraseña" name="contraseña" required>
-            </div>
-            <div class="form-group">
-               <label for="apodo">Fecha De Nacimiento</label>
-               <input type="date" class="form-control" id="fecha" name="fecha" required>
-            </div>
-            <div class="form-group">
-               <label for="email">Mail</label>
-               <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-            <button type="submit">Crear usuario</button>
-         </form>
-    </body>
+
+<head>
+   {% load static %}
+   <meta charset="UTF-8">
+   <link rel="stylesheet" href="{% static 'styles/basic.css' %}">
+   <link rel="stylesheet" href="{% static 'styles/register.css' %}">
+   <title>Registro</title>
+</head>
+
+<body>
+   <div class="content">
+      <h1> Registrarse </h1>
+      <form method="post">
+         {% csrf_token %}
+         <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id=nombre name="nombre" required>
+         </div>
+         <div class="form-group">
+            <label for="nombre_usuario">Nombre de Usuario</label>
+            <input type="text" class="form-control" id=nombre_usuario name="nombre_usuario" required>
+         </div>
+         <div class="form-group">
+            <label for="contraseña">Contraseña</label>
+            <input type="password" class="form-control" id="contraseña" name="contraseña" required>
+         </div>
+         <div class="form-group">
+            <label for="apodo">Fecha De Nacimiento</label>
+            <input type="date" class="form-control" id="fecha" name="fecha" required>
+         </div>
+         <div class="form-group">
+            <label for="email">Mail</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+         </div>
+         <div class="buttons">
+            <a href="{% url 'inicio' %}"><button type="button">Volver al Inicio</button></a>
+            <button type="submit">Crear Usuario</button>
+         </div>
+      </form>
+   </div>
+</body>
+
 </html>
