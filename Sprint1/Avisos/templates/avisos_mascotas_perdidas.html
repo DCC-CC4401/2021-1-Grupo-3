@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang=es>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{% static 'styles/avisos_mascotas_perdidas.css' %}">
+    </head>
+
+    <body>
+        {% include "superior.html"%}
+
+        <!-- TABS-->
+        <button class="tablink" onclick="openPage('Todos_los_Avisos', this, 'red')" id="defaultOpen">Todos los Avisos</button>
+        <button class="tablink" onclick="openPage('Mis_Avisos', this, 'green')">Mis Avisos</button>
+
+        <div id="Todos_los_Avisos" class="tabcontent">
+            <h3>Todos los Avisos</h3>
+            <p>Aquí van todos los avisos</p>
+        </div>
+
+        <div id="Mis_Avisos" class="tabcontent">
+            <h3>Mis Avisos</h3>
+            <p>Aquí van los avisos del usuario</p> 
+        </div>
+
+        <script>
+            function openPage(pageName,elmnt,color) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.backgroundColor = "";
+            }
+            document.getElementById(pageName).style.display = "block";
+            elmnt.style.backgroundColor = color;
+            }
+
+            // Get the element with id="defaultOpen" and click on it
+            document.getElementById("defaultOpen").click();
+        </script>
+
+
+        <!-- BBDD CON POSTS RECIENTES Y OPCION DE FILTRAR -->
+
+
+        <!-- POSTS DEL USUARIO -->
+        
+
+    </body>

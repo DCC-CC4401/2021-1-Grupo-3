@@ -22,4 +22,5 @@ urlpatterns = [
     path('register_user/', register_user, name='register_user'),
     path('inicio/', inicio, name='inicio'),
     path('logout/', logout_user, name='logout_user'),
+    path('mascotas_perdidas/', avisos_mascotas_perdidas, name= 'mascotas_perdidas')
 ]
