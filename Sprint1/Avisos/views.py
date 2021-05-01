@@ -40,3 +40,6 @@ def inicio(request):
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect('/inicio')
+
+def avisos_mascotas_perdidas(request):
+    return render(request, "avisos_mascotas_perdidas.html")
