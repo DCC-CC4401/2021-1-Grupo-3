@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang=es>
     <head>
+        {% load static %}
         <meta charset="utf-8">
-        <link rel="stylesheet" href="styles/basic.css">
-        <link rel="stylesheet" href="styles/form.css">
-        <script src="js/funciones.js"></script>
+        <link rel="stylesheet" href="{% static 'styles/basic.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/form.css' %}">
+        <script src="{% static 'js/funciones.js' %}"></script>
     </head>
 
     <body>
@@ -144,5 +145,4 @@
             </div>  
         </div>
     </body>
-
 </html>

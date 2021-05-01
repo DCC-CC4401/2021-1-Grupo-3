@@ -1,20 +1,40 @@
 <html>
     <head>
+        {% load static %}
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="styles/superior.css">
+        <link rel="stylesheet" href="{% static 'styles/superior.css' %}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <div class="topnav">
 
-            <img src="logo_1.png" alt="">
-
+           <img src="{% static 'images/logo_1.png' %}" alt="">
+            {% if user.is_authenticated %}
             <a href="https://www.google.com"> <i class="fa fa-fw fa-user"></i> Usuario</a>
             <!-- Esta parte hay que arreglarla cuando se creen los usuarios -->
+                <a href="{% url 'logout_user' %}">Cerrar sesión</a>
+            {% else %}
+            <form method="post" >
+                {% csrf_token %}
+                <div class="form-group">
+                <label for="nombre_usuario">Nombre</label>
+                <input type="text" class="form-control" id=nombre_usuario name="nombre_usuario" required>
+                </div>
+                <div class="form-group">
+                    <label for="contraseña">Contraseña</label>
+                    <input type="password" class="form-control" id="contraseña" name="contraseña" required>
+                </div>
+                <button type="submit">Entrar</button>
+            </form>
+                <a href="{% url 'register_user' %}">Registrarse</a>
+            {% endif %}
+            <hr>
+
+            
         </div>
         
         <div> 
-            <img id="portada" src="header.jpg" alt="">
+            <img src="{% static 'images/header.jpg' %}" alt="">
         </div>
 
         <div> 
