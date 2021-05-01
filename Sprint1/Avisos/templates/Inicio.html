@@ -6,26 +6,43 @@
         <link rel="stylesheet" href="{% static 'styles/basic.css' %}">
         <link rel="stylesheet" href="{% static 'styles/form.css' %}">
         <script src="{% static 'js/funciones.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'styles/inicio.css' %}">
     </head>
 
     <body>
         {% include "superior.html"%}
 
-        <div> 
-            <div> 
-                <!-- Más recientes (conversar como pasar info)-->
+        <div class= bloque_principal> 
+
+            <div class=bloque_izq> 
+                <h1> Avisos Recientes de Mascotas Perdidas: </h1>
+
+                {% block content %}
+                    <!-- AQUÍ VA ALGO COMO ESTO 
+                    {% for aviso in avisos %}
+                        blabla
+                    {% endfor %} -->
+                {% endblock %}
+
             </div>
-            <div> 
-                <div>
+
+            <div class= bloque_der> 
+                <div id= boton_reportar>
                     <button type="button" onclick="abrir('modalForm')">Reportar Mascota</button>
                 </div>
-                <div> 
+
+                <div id= boton_adoptar> 
                     <!-- dar en adopcion -->
                 </div>
+
             </div>
+
         </div>
 
-        <!-- MODAL FORMULARIO-->
+
+
+
+        <!-- ___________________________MODAL FORMULARIO______________________________ -->
         <div id="modalForm" class="modal oculto"> 
             <div class="modal-content2">
                 <form method="post" id="formulario" onsubmit="return validar()">
