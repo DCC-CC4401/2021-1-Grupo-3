@@ -23,7 +23,17 @@ def register_user(request):
 def inicio(request):
     last = Aviso.objects.all()[:6]
     if request.user.is_authenticated:
-        return render(request,"Inicio.html",{'last':last})
+        if request.method == 'GET':
+             return render(request,"Inicio.html",{'last':last})
+        if request.method == 'POST':
+            region = request.POST['region']
+            comuna = request.POST['comuna']
+            Tipo_Animal = request.POST['tipo-mascota']
+            sexo = request.POST['sexo-mascota']
+            foto = request.POST['foto-mascota']
+            aviso = Aviso.objects.create(Motivo='perdido', Titulo='owo',Comuna=comuna, Region=region, Tipo_Animal=Tipo_Animal,
+            Sexo=sexo, Nombre_De_Usuario=request.user, Descripcion='owo', Foto=foto)
+        return HttpResponseRedirect('/inicio')
     else:
         if request.method == 'GET':
              return render(request,"Inicio.html",{'last':last})

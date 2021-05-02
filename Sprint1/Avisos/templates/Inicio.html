@@ -18,10 +18,9 @@
                 <h1> Avisos Recientes de Mascotas Perdidas: </h1>
 
                 {% block content %}
-                    <!-- AQUÍ VA ALGO COMO ESTO 
-                    {% for aviso in avisos %}
-                        blabla
-                    {% endfor %} -->
+                    {% for aviso in last%}
+                    <img src="{%static 'aviso.foto.path' %}" alt="">
+                    {% endfor %}
                 {% endblock %}
 
             </div>
@@ -40,12 +39,11 @@
         </div>
 
 
-
-
+        {% if user.is_authenticated %}
         <!-- ___________________________MODAL FORMULARIO______________________________ -->
         <div id="modalForm" class="modal oculto"> 
             <div class="modal-content2">
-                <form method="post" id="formulario" onsubmit="return validar()">
+                <form method="post" id="formulario" onsubmit="return validar()">{% csrf_token %}
                     <div class="error oculto" id="error">
                         <p>error</p>
                     </div>
@@ -149,19 +147,22 @@
                        <button type="button" onclick="achicar('modalForm')">Cancelar</button>
                         <button type="button" onclick="abrir('modalConfirmacion')">Publicar Post</button>
                     </div>
+                    <div id="modalConfirmacion" class="modal oculto"> 
+                        <div class="modal-content2" style="width: 60%">
+                            <h4>¿Esta seguro que desea enviar esta información?</h4>
+                            <div class="buttons">
+                                <button type="button" onclick="achicar('modalConfirmacion')">No estoy seguro</button>
+                                <button type="submit" onclick="achicarDos()">Si, estoy total y absolutamente seguro</button>
+                            </div>
+                        </div>  
+                    </div>
                     
                 </form>
             </div>
         </div>
 
-        <div id="modalConfirmacion" class="modal oculto"> 
-            <div class="modal-content2" style="width: 60%">
-                <h4>¿Esta seguro que desea enviar esta información?</h4>
-                <div class="buttons">
-                    <button type="button" onclick="achicar('modalConfirmacion')">No estoy seguro</button>
-                    <button type="submit" onclick="achicarDos()">Si, estoy total y absolutamente seguro</button>
-                </div>
-            </div>  
-        </div>
+        
+        
+        {% endif %}
     </body>
 </html>
