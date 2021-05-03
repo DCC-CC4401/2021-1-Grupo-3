@@ -18,5 +18,5 @@ class Aviso(models.Model):
     Sexo = models.CharField(max_length=15)
     Nombre_De_Usuario = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     Descripcion = models.CharField(max_length=250)
-    Foto = models.ImageField()
+    Foto = models.ImageField(upload_to="images/")
     Estado_del_Aviso = models.BooleanField(default=False)

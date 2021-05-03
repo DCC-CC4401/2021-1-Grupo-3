@@ -28,22 +28,26 @@
                         <h3>Detalles:</h3>
                         <p>Animal: {{aviso.Tipo_Animal}}</p>
                         <p>Sexo: {{aviso.Sexo}}</p>
-                        <img src="{%static 'aviso.foto.path' %}" alt="">
+                        <img src="{{aviso.Foto.url}}" alt="" width="50%">
                     {% endfor %}
             {% endblock %}
-        
-    </div>
+
+        </div>
 
 
         {% if user.is_authenticated %}
         <div id="Mis_Avisos" class="tabcontent">
             <h3>Mis Avisos</h3>
 
- 
-
-            <p>Aquí van los avisos del usuario</p> 
-        
-        
+                    {% for aviso in mis_avisos%}
+                        <h2>{{aviso.Titulo}}</h2>
+                        <h3>{{aviso.Comuna}}, {{aviso.Region}} ({{aviso.Fecha}})</h3>
+                        <p> {{aviso.Descripcion}} </p>
+                        <h3>Detalles:</h3>
+                        <p>Animal: {{aviso.Tipo_Animal}}</p>
+                        <p>Sexo: {{aviso.Sexo}}</p>
+                        <img src="{{aviso.Foto.url}}" alt="" width="50%">
+                    {% endfor %}        
         
         </div>
         {% endif %}

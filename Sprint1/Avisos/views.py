@@ -21,7 +21,7 @@ def register_user(request):
         return HttpResponseRedirect('/inicio')
 
 def inicio(request):
-    last = Aviso.objects.all()[:6]
+    last = Aviso.objects.order_by('-Fecha')[:6]
     if request.user.is_authenticated:
         if request.method == 'GET':
              return render(request,"Inicio.html",{'last':last})
@@ -43,7 +43,7 @@ def inicio(request):
             usuario = authenticate(username=username,password=contraseña)
             if usuario is not None:
                 login(request,usuario)
-                return render(request,"Inicio.html")
+                return render(request,"Inicio.html", {'last': last})
             else:
                 return HttpResponseRedirect('/register_user')
 
@@ -52,11 +52,13 @@ def logout_user(request):
     return HttpResponseRedirect('/inicio')
 
 def avisos_mascotas_perdidas(request):
-    todos = Aviso.objects.all()
+    todos = Aviso.objects.order_by('-Fecha')
+    
 
     if request.user.is_authenticated:
+        mis_avisos= Aviso.objects.filter(Nombre_De_Usuario=request.user)
         if request.method == 'GET':
-             return render(request,"avisos_mascotas_perdidas.html", {'todos': todos})
+             return render(request,"avisos_mascotas_perdidas.html", {'todos': todos, 'mis_avisos': mis_avisos})
     else:
         if request.method == 'GET':
              return render(request,"avisos_mascotas_perdidas.html", {'todos': todos})

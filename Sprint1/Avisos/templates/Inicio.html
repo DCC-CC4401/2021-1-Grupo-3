@@ -25,7 +25,7 @@
                     <h3>Detalles:</h3>
                     <p>Animal: {{aviso.Tipo_Animal}}</p>
                     <p>Sexo: {{aviso.Sexo}}</p>
-                    <img src="{%static 'aviso.foto.path' %}" alt="">
+                    <img src="{{aviso.Foto.url}}" alt="" width="50%">
                     {% endfor %}
                 {% endblock %}
 
