@@ -1,60 +1,63 @@
 <!DOCTYPE html>
 <html lang=es>
-    <head>
-        {% load static %}
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="{% static 'styles/avisos_mascotas_perdidas.css' %}">
-    </head>
 
-    <body>
-        {% include "superior.html"%}
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'styles/avisos_mascotas_perdidas.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/basic.css' %}">
+</head>
 
-        <!-- TABS-->
-        <div class=tabs>
-            <button class="tablink" onclick="openPage('Todos_los_Avisos', this, '#f29d46')" id="defaultOpen">Todos los Avisos</button>
-            {% if user.is_authenticated %}
-            <button class="tablink" onclick="openPage('Mis_Avisos', this, '#f29d46')">Mis Avisos</button>
-            {% endif %}
-        </div>
+<body>
+    {% include "superior.html"%}
 
-        <div id="Todos_los_Avisos" class="tabcontent">
-            <h3>Todos los Avisos</h3>
-
-            {% block content %}
-                    {% for aviso in todos%}
-                        <h2>{{aviso.Titulo}}</h2>
-                        <h3>{{aviso.Comuna}}, {{aviso.Region}} ({{aviso.Fecha}})</h3>
-                        <p> {{aviso.Descripcion}} </p>
-                        <h3>Detalles:</h3>
-                        <p>Animal: {{aviso.Tipo_Animal}}</p>
-                        <p>Sexo: {{aviso.Sexo}}</p>
-                        <img src="{{aviso.Foto.url}}" alt="" width="50%">
-                    {% endfor %}
-            {% endblock %}
-
-        </div>
-
-
+    <!-- TABS-->
+    <div class=tabs>
+        <button class="tablink" onclick="openPage('Todos_los_Avisos', this, '#f29d46')" id="defaultOpen">Todos los
+            Avisos</button>
         {% if user.is_authenticated %}
-        <div id="Mis_Avisos" class="tabcontent">
-            <h3>Mis Avisos</h3>
-
-                    {% for aviso in mis_avisos%}
-                        <h2>{{aviso.Titulo}}</h2>
-                        <h3>{{aviso.Comuna}}, {{aviso.Region}} ({{aviso.Fecha}})</h3>
-                        <p> {{aviso.Descripcion}} </p>
-                        <h3>Detalles:</h3>
-                        <p>Animal: {{aviso.Tipo_Animal}}</p>
-                        <p>Sexo: {{aviso.Sexo}}</p>
-                        <img src="{{aviso.Foto.url}}" alt="" width="50%">
-                    {% endfor %}        
-        
-        </div>
+        <button class="tablink" onclick="openPage('Mis_Avisos', this, '#f29d46')">Mis Avisos</button>
         {% endif %}
+    </div>
 
-        <!-- SCRIPT TABS -->
-        <script>
-            function openPage(pageName,elmnt,color) {
+    <div id="Todos_los_Avisos" class="tabcontent">
+        <h3>Todos los Avisos</h3>
+
+        {% block content %}
+        {% for aviso in todos%}
+        <h2>{{aviso.Titulo}}</h2>
+        <h3>{{aviso.Comuna}}, {{aviso.Region}} ({{aviso.Fecha}})</h3>
+        <p> {{aviso.Descripcion}} </p>
+        <h3>Detalles:</h3>
+        <p>Animal: {{aviso.Tipo_Animal}}</p>
+        <p>Sexo: {{aviso.Sexo}}</p>
+        <img src="{{aviso.Foto.url}}" alt="" width="50%">
+        {% endfor %}
+        {% endblock %}
+
+    </div>
+
+
+    {% if user.is_authenticated %}
+    <div id="Mis_Avisos" class="tabcontent">
+        <h3>Mis Avisos</h3>
+
+        {% for aviso in mis_avisos%}
+        <h2>{{aviso.Titulo}}</h2>
+        <h3>{{aviso.Comuna}}, {{aviso.Region}} ({{aviso.Fecha}})</h3>
+        <p> {{aviso.Descripcion}} </p>
+        <h3>Detalles:</h3>
+        <p>Animal: {{aviso.Tipo_Animal}}</p>
+        <p>Sexo: {{aviso.Sexo}}</p>
+        <img src="{{aviso.Foto.url}}" alt="" width="50%">
+        {% endfor %}
+
+    </div>
+    {% endif %}
+
+    <!-- SCRIPT TABS -->
+    <script>
+        function openPage(pageName, elmnt, color) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tabcontent");
             for (i = 0; i < tabcontent.length; i++) {
@@ -63,14 +66,14 @@
             tablinks = document.getElementsByClassName("tablink");
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].style.backgroundColor = "#f6f6f6";
-                tablinks[i].style.color= "black";
+                tablinks[i].style.color = "black";
             }
             document.getElementById(pageName).style.display = "block";
             elmnt.style.backgroundColor = color;
-            }
+        }
 
-            // Get the element with id="defaultOpen" and click on it
-            document.getElementById("defaultOpen").click();
-        </script>
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+    </script>
 
-    </body>
+</body>
