@@ -52,4 +52,24 @@ def logout_user(request):
     return HttpResponseRedirect('/inicio')
 
 def avisos_mascotas_perdidas(request):
-    return render(request, "avisos_mascotas_perdidas.html")
+    todos = Aviso.objects.all()
+
+    if request.user.is_authenticated:
+        if request.method == 'GET':
+             return render(request,"avisos_mascotas_perdidas.html", {'todos': todos})
+    else:
+        if request.method == 'GET':
+             return render(request,"avisos_mascotas_perdidas.html", {'todos': todos})
+        if request.method == 'POST':
+            username = request.POST['nombre_usuario']
+            contraseña = request.POST['contraseña']
+            usuario = authenticate(username=username,password=contraseña)
+            if usuario is not None:
+                login(request,usuario)
+                return render(request,"avisos_mascotas_perdidas.html", {'todos': todos})
+            else:
+                return HttpResponseRedirect('/register_user')
+
+
+
+

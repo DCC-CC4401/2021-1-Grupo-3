@@ -19,6 +19,12 @@
 
                 {% block content %}
                     {% for aviso in last%}
+                    <h2>{{aviso.Titulo}}</h2>
+                    <h3>{{aviso.Comuna}}, {{aviso.Region}} ({{aviso.Fecha}})</h3>
+                    <p> {{aviso.Descripcion}} </p>
+                    <h3>Detalles:</h3>
+                    <p>Animal: {{aviso.Tipo_Animal}}</p>
+                    <p>Sexo: {{aviso.Sexo}}</p>
                     <img src="{%static 'aviso.foto.path' %}" alt="">
                     {% endfor %}
                 {% endblock %}
