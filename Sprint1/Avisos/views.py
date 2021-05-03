@@ -31,8 +31,11 @@ def inicio(request):
             Tipo_Animal = request.POST['tipo-mascota']
             sexo = request.POST['sexo-mascota']
             foto = request.POST['foto-mascota']
-            aviso = Aviso.objects.create(Motivo='perdido', Titulo='owo',Comuna=comuna, Region=region, Tipo_Animal=Tipo_Animal,
-            Sexo=sexo, Nombre_De_Usuario=request.user, Descripcion='owo', Foto=foto)
+            motivo = request.POST['tipo-pub']
+            titulo = request.POST['title']
+            comentario = request.POST['comentarios']
+            aviso = Aviso.objects.create(Motivo=motivo, Titulo=titulo,Comuna=comuna, Region=region, Tipo_Animal=Tipo_Animal,
+            Sexo=sexo, Nombre_De_Usuario=request.user, Descripcion=comentario, Foto=foto)
         return HttpResponseRedirect('/inicio')
     else:
         if request.method == 'GET':
