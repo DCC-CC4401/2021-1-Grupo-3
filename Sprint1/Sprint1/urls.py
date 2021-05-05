@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from Avisos.views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('register_user/', register_user, name='register_user'),
+    path('inicio/', inicio, name='inicio'),
+    path('logout/', logout_user, name='logout_user'),
+    path('mascotas_perdidas/', avisos_mascotas_perdidas, name= 'mascotas_perdidas')
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
