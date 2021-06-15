@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   {% load static %}
+   <meta charset="UTF-8">
+   <link rel="stylesheet" href="{% static 'styles/basic.css' %}">
+   <link rel="stylesheet" href="{% static 'styles/register.css' %}">
+   <script src="{% static 'js/funciones.js' %}"></script>
+   <title>Dar en Adopción</title>
+</head>
+
+<body>
+   <div class="content">
+      <h1> Dar en Adopción</h1>
+      <center><h2>Informacion de la Mascota</h2></center>
+      <form method="post">
+         {% csrf_token %}
+         <div class="entrada">
+            <h3>Tipo:</h3>
+            <select name="tipo-mascota" onchange="addOtro(this)">
+                <option value="">Seleccione el tipo</option>
+                <option value="perro">perro</option>
+                <option value="gato">gato</option>
+                <option value="pez">pez</option>
+                <option value="tortuga">tortuga</option>
+                <option value="hámster">hámster</option>
+                <option value="loro">loro</option>
+                <option value="iguana">iguana</option>
+                <option value="araña">araña</option>
+                <option value="otro">otro</option>
+            </select>
+            <input class="oculto" type="text" name="tipo-mascota-otro" size=40 maxlength=40>
+            <h3>Sexo:</h3>
+            <select name="sexo-mascota">
+                <option value="">Seleccione el sexo</option>
+                <option value="Macho">Macho</option>
+                <option value="Hembra">Hembra</option>
+                <option value="No Aplica">No Aplica</option>
+            </select>
+        </div>
+        <div class="entrada">
+            <h3>Edad (en meses)</h3>
+            <input class="especial" type="number" name="edad">
+        </div>
+        <div class="entrada">
+            <h3>Caracteristicas</h3>
+            <textarea id="caracteristicas" placeholder="Ingrese aquí caracteristicas de la mascota"></textarea>
+        </div>
+        <div class="entrada">
+            <h3>Comentarios</h3>
+            <textarea id="comentarios" placeholder="Ingrese aquí información adicional."></textarea>
+        </div>
+        <center><h2>Datos de Contacto</h2></center>
+        <div class="entrada">
+            <h3>Número Celular (8 digitos) (+569)</h3>
+            <input type="text" id="numero" required placeholder="Ingrese su número celular">
+
+        </div>
+        <div class="informe palido" id="domicilio">
+            <h3>Datos del Domicilio</h3>
+            <div class="entrada">
+                <h4>Región:</h4>
+                <select name="region" id="region" required onchange="comunasgenerate()">
+                    <option value="">Seleccione su Region</option>
+                    <option value="Región Metropolitana de Santiago">Región Metropolitana de Santiago</option>
+                    <option value="Región de Arica y Parinacota">Región de Arica y Parinacota</option>
+                    <option value="Región de Tarapacá">Región de Tarapacá</option>
+                    <option value="Región de Antofagasta">Región de Antofagasta</option>
+                    <option value="Región de Atacama">Región de Atacama</option>
+                    <option value="Región de Coquimbo">Región de Coquimbo</option>
+                    <option value="Región de Valparaíso">Región de Valparaíso</option>
+                    <option value="Región del Libertador Gral. Bernardo O Higgins">Región del Libertador Gral.
+                        Bernardo O Higgins</option>
+                    <option value="Región del Maule">Región del Maule</option>
+                    <option value="Región de Ñuble">Región de Ñuble</option>
+                    <option value="Región del Biobío">Región del Biobío</option>
+                    <option value="Región de la Araucanía">Región de la Araucanía</option>
+                    <option value="Región de Los Ríos">Región de Los Ríos</option>
+                    <option value="Región de Los Lagos">Región de Los Lagos</option>
+                    <option value="Región Aisén del Gral. Carlos Ibáñez del Campo">Región Aisén del Gral. Carlos
+                        Ibáñez del Campo</option>
+                    <option value="Región de Magallanes y de la Antártica Chilena">Región de Magallanes y de la
+                        Antártica Chilena</option>
+                </select>
+                <h4>Comuna:</h4>
+                <select name="comuna" id="comuna" required>
+                    <option value="">Seleccione su Comuna</option>
+                </select>
+            </div>
+        </div>
+
+         <div class="buttons">
+            <a href="{% url 'inicio' %}"><button type="button">Volver al Inicio</button></a>
+            <button type="button" onclick="abrir('modalConfirmacion')">Publicar Post</button>
+         </div>
+         <div id="modalConfirmacion" class="modal oculto">
+            <div class="modal-content2" style="width: 60%">
+                <h4>¿Esta seguro que desea enviar esta información?</h4>
+                <div class="buttons">
+                    <button type="button" onclick="achicar('modalConfirmacion')">No estoy seguro</button>
+                    <button type="submit" onclick="achicarDos()">Si, estoy total y absolutamente seguro</button>
+                </div>
+            </div>
+        </div>
+      </form>
+   </div>
+</body>
+
+</html>
