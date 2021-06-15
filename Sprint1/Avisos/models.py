@@ -31,6 +31,7 @@ class Adopcion(models.Model):
     Nombre_De_Usuario = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     Caracteristicas = models.CharField(max_length=250)
     Comentarios = models.CharField(max_length=250)
+    Edad = models.IntegerField(default=0)
     Foto = models.ImageField(upload_to="images/")
     Estado_del_Aviso = models.BooleanField(default=False)
     Numero_Telefonico = models.CharField(max_length=8)
