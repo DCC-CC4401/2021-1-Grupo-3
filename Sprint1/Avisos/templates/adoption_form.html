@@ -12,7 +12,7 @@
 
 <body>
    <div class="content">
-      <h1> Dar en Adopción</h1>
+      <center><h2> Dar en Adopción</h2></center>
       <center><h2>Informacion de la Mascota</h2></center>
       <form method="post">
          {% csrf_token %}
@@ -45,17 +45,22 @@
         </div>
         <div class="entrada">
             <h3>Caracteristicas</h3>
-            <textarea id="caracteristicas" placeholder="Ingrese aquí caracteristicas de la mascota"></textarea>
+            <input type="text" id="caracteristicas" required placeholder="Ingrese las caracteristicas de la mascota">
         </div>
         <div class="entrada">
             <h3>Comentarios</h3>
-            <textarea id="comentarios" placeholder="Ingrese aquí información adicional."></textarea>
+            <input type="text" id="comentarios" placeholder="Ingrese aquí información adicional.">
         </div>
         <center><h2>Datos de Contacto</h2></center>
         <div class="entrada">
             <h3>Número Celular (8 digitos) (+569)</h3>
             <input type="text" id="numero" required placeholder="Ingrese su número celular">
 
+        </div>
+        <div>
+            <h4 style="width: 100%">Fotos:</h4>
+            <input class="especial" type="file" name="foto-mascota">
+            <button type="button" onclick="duplicar('foto-mascota',this)">agregar otra foto</button>
         </div>
         <div class="informe palido" id="domicilio">
             <h3>Datos del Domicilio</h3>
@@ -90,7 +95,7 @@
             </div>
         </div>
 
-         <div>
+         <div class="buttons">
             <a href="{% url 'inicio' %}"><button type="button">Volver al Inicio</button></a>
             <button type="button" onclick="abrir('modalConfirmacion')">Publicar Post</button>
          </div>

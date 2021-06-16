@@ -86,13 +86,13 @@ def adoption_form(request):
             Tipo_Animal = request.POST['tipo-mascota']
             sexo = request.POST['sexo-mascota']
             foto = request.POST['foto-mascota']
-            caracteristicas = request.POST['caracteristicas']
+            caracteristicas = request.POST.get('caracteristicas', ' ')
             edad = request.POST['edad']
-            comentario = request.POST['comentarios']
-            numero = request.POST['numero']
+            comentario = request.POST.get('comentarios', ' ')
+            numero = request.POST.get('numero', ' ')
             adopcion = Adopcion.objects.create(Comuna=comuna, Region=region, Tipo_Animal=Tipo_Animal, Sexo=sexo,
             Nombre_De_Usuario=request.user, Caracteristicas=caracteristicas, Comentarios=comentario, Foto=foto,
-            Numero_Telefonico=numero)
+            Numero_Telefonico=numero, Edad=edad)
         return HttpResponseRedirect('/inicio')
     else:
         return HttpResponseRedirect('/register_user')
