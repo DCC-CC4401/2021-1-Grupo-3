@@ -76,5 +76,26 @@ def avisos_mascotas_perdidas(request):
                 return HttpResponseRedirect('/register_user')
 
 
+def adoption_form(request):
+    if request.user.is_authenticated:
+        if request.method == 'GET': #si estamos accediendo a la página
+            return render(request,"adoption_form.html")
+        if request.method == 'POST':
+            region = request.POST['region']
+            comuna = request.POST['comuna']
+            Tipo_Animal = request.POST['tipo-mascota']
+            sexo = request.POST['sexo-mascota']
+            foto = request.POST['foto-mascota']
+            caracteristicas = request.POST.get('caracteristicas', ' ')
+            edad = request.POST['edad']
+            comentario = request.POST.get('comentarios', ' ')
+            numero = request.POST.get('numero', ' ')
+            adopcion = Adopcion.objects.create(Comuna=comuna, Region=region, Tipo_Animal=Tipo_Animal, Sexo=sexo,
+            Nombre_De_Usuario=request.user, Caracteristicas=caracteristicas, Comentarios=comentario, Foto=foto,
+            Numero_Telefonico=numero, Edad=edad)
+        return HttpResponseRedirect('/inicio')
+    else:
+        return HttpResponseRedirect('/register_user')
+
 
 
