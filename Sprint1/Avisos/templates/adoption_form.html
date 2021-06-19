@@ -14,7 +14,7 @@
    <div class="content">
       <center><h2> Dar en Adopción</h2></center>
       <center><h2>Informacion de la Mascota</h2></center>
-      <form method="post">
+      <form method="post" enctype="multipart/form-data">
          {% csrf_token %}
          <div class="entrada">
             <h3>Tipo:</h3>
@@ -45,16 +45,16 @@
         </div>
         <div class="entrada">
             <h3>Caracteristicas</h3>
-            <input type="text" id="caracteristicas" required placeholder="Ingrese las caracteristicas de la mascota">
+            <input type="text" id="caracteristicas" name="caracteristicas" required placeholder="Ingrese las caracteristicas de la mascota">
         </div>
         <div class="entrada">
             <h3>Comentarios</h3>
-            <input type="text" id="comentarios" placeholder="Ingrese aquí información adicional.">
+            <input type="text" id="comentarios" name="comentarios" placeholder="Ingrese aquí información adicional.">
         </div>
         <center><h2>Datos de Contacto</h2></center>
         <div class="entrada">
             <h3>Número Celular (8 digitos) (+569)</h3>
-            <input type="text" id="numero" required placeholder="Ingrese su número celular">
+            <input type="text" id="numero" name="numero" required placeholder="Ingrese su número celular">
 
         </div>
         <div>

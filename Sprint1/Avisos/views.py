@@ -30,7 +30,7 @@ def inicio(request):
             comuna = request.POST['comuna']
             Tipo_Animal = request.POST['tipo-mascota']
             sexo = request.POST['sexo-mascota']
-            foto = request.POST['foto-mascota']
+            foto = request.FILES['foto-mascota']
             motivo = request.POST['tipo-pub']
             titulo = request.POST['title']
             comentario = request.POST['comentarios']
@@ -85,7 +85,7 @@ def adoption_form(request):
             comuna = request.POST['comuna']
             Tipo_Animal = request.POST['tipo-mascota']
             sexo = request.POST['sexo-mascota']
-            foto = request.POST['foto-mascota']
+            foto = request.FILES['foto-mascota']
             caracteristicas = request.POST.get('caracteristicas', ' ')
             edad = request.POST['edad']
             comentario = request.POST.get('comentarios', ' ')
