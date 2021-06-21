@@ -15,7 +15,7 @@
         <div class="login">
             {% if user.is_authenticated %}
 
-            <a class="link" href="https://www.google.com"> <i class="fa fa-fw fa-user"></i> Usuario</a>
+            <a class="link" href="{%url 'inicio'%}"> <i class="fa fa-fw fa-user"></i> Usuario</a>
             <!-- Esta parte hay que arreglarla cuando se creen los usuarios -->
             <a class="link" href="{% url 'logout_user' %}">Cerrar sesión</a>
             {% else %}

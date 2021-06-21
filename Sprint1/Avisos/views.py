@@ -78,16 +78,24 @@ def avisos_mascotas_perdidas(request):
 def avisos_adopcion(request):
     todos = Adopcion.objects.order_by('-Fecha')
 
+<<<<<<< HEAD
     if request.user.is_authenticated:
         mis_avisos= Adopcion.objects.filter(Usuario=request.user)
         if request.method == 'GET':
              return render(request,"avisos_adopcion.html")
+=======
+def adoption_form(request):
+    if request.user.is_authenticated:
+        if request.method == 'GET': #si estamos accediendo a la página
+            return render(request,"adoption_form.html")
+>>>>>>> d466fc66194e2d29a2c3b4a64666a61f26fbca8b
         if request.method == 'POST':
             region = request.POST['region']
             comuna = request.POST['comuna']
             Tipo_Animal = request.POST['tipo-mascota']
             sexo = request.POST['sexo-mascota']
             foto = request.POST['foto-mascota']
+<<<<<<< HEAD
             comentario = request.POST['comentarios']
             numero = request.POST['number']
             aviso = Aviso.objects.create(Motivo='adopcion', Comuna=comuna, Region=region, Tipo_Animal=Tipo_Animal,
@@ -103,3 +111,18 @@ def avisos_adopcion(request):
                 return render(request,"avisos_adopcion.html", {'todos': todos})
             else:
                 return HttpResponseRedirect('/register_user')
+=======
+            caracteristicas = request.POST.get('caracteristicas', ' ')
+            edad = request.POST['edad']
+            comentario = request.POST.get('comentarios', ' ')
+            numero = request.POST.get('numero', ' ')
+            adopcion = Adopcion.objects.create(Comuna=comuna, Region=region, Tipo_Animal=Tipo_Animal, Sexo=sexo,
+            Nombre_De_Usuario=request.user, Caracteristicas=caracteristicas, Comentarios=comentario, Foto=foto,
+            Numero_Telefonico=numero, Edad=edad)
+        return HttpResponseRedirect('/inicio')
+    else:
+        return HttpResponseRedirect('/register_user')
+
+
+
+>>>>>>> d466fc66194e2d29a2c3b4a64666a61f26fbca8b
