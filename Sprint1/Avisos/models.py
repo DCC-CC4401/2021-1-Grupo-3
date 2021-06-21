@@ -20,3 +20,16 @@ class Aviso(models.Model):
     Descripcion = models.CharField(max_length=250)
     Foto = models.ImageField(upload_to="images/")
     Estado_del_Aviso = models.BooleanField(default=False)
+
+class Adopcion(models.Model):
+    Id = models.BigAutoField(primary_key=True)
+    Comuna = models.CharField(max_length=30)
+    Region = models.CharField(max_length=30)
+    Fecha = models.DateTimeField(default=datetime.now())
+    Tipo_Animal = models.CharField(max_length=40)
+    Sexo = models.CharField(max_length=15)
+    Comentarios = models.CharField(max_length=250)
+    Foto = models.ImageField(upload_to="images/")
+    Numero_Telefonico = models.IntegerField(max_length=8)
+    Usuario = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    Estado_del_Aviso = models.BooleanField(default=False)

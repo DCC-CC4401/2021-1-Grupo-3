@@ -75,6 +75,31 @@ def avisos_mascotas_perdidas(request):
             else:
                 return HttpResponseRedirect('/register_user')
 
+def avisos_adopcion(request):
+    todos = Adopcion.objects.order_by('-Fecha')
 
-
-
+    if request.user.is_authenticated:
+        mis_avisos= Adopcion.objects.filter(Usuario=request.user)
+        if request.method == 'GET':
+             return render(request,"avisos_adopcion.html")
+        if request.method == 'POST':
+            region = request.POST['region']
+            comuna = request.POST['comuna']
+            Tipo_Animal = request.POST['tipo-mascota']
+            sexo = request.POST['sexo-mascota']
+            foto = request.POST['foto-mascota']
+            comentario = request.POST['comentarios']
+            numero = request.POST['number']
+            aviso = Aviso.objects.create(Motivo='adopcion', Comuna=comuna, Region=region, Tipo_Animal=Tipo_Animal,
+            Sexo=sexo, Usuario=request.user, correo=request.user.Email, Comentarios=comentario, Foto=foto, Numero_Telefonico=numero)
+        return HttpResponseRedirect('/avisos_adopcion')
+    else:
+        if request.method == 'POST':
+            username = request.POST['nombre_usuario']
+            contraseña = request.POST['contraseña']
+            usuario = authenticate(username=username,password=contraseña)
+            if usuario is not None:
+                login(request,usuario)
+                return render(request,"avisos_adopcion.html", {'todos': todos})
+            else:
+                return HttpResponseRedirect('/register_user')
