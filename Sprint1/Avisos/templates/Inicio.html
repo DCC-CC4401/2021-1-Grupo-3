@@ -49,14 +49,16 @@
     <!-- ___________________________MODAL FORMULARIO______________________________ -->
     <div id="modalForm" class="modal oculto">
         <div class="modal-content2">
-            <form method="post" id="formulario" enctype="multipart/form-data" onsubmit="return validar()">{% csrf_token %}
+            <form method="post" id="formulario" enctype="multipart/form-data" onsubmit="return validar()">{% csrf_token
+                %}
                 <div class="error oculto" id="error">
                     <p>error</p>
                 </div>
                 <div class="informe palido" id="post-info">
                     <div class="entrada">
                         <h4>Título Publicación</h4>
-                        <input type="text" id="title" name="title" required placeholder="Ingrese un título">
+                        <input type="text" name="title" id="title" required placeholder="Ingrese un título">
+
                         <select name="tipo-pub" id="tipo-pub" required>
                             <option value="">Seleccione su tipo de publicación</option>
                             <option value="1">Perdí mi mascota</option>
@@ -98,37 +100,6 @@
                     </div>
                 </div>
                 <div class="informe palido">
-                    <div class="oculto" id="infomascota">
-                        <h3>Informacion Mascota</h3>
-                        <div class="entrada">
-                            <h4>Tipo:</h4>
-                            <select name="tipo-mascota" onchange="addOtro(this)">
-                                <option value="">Seleccione el tipo</option>
-                                <option value="perro">perro</option>
-                                <option value="gato">gato</option>
-                                <option value="pez">pez</option>
-                                <option value="tortuga">tortuga</option>
-                                <option value="hámster">hámster</option>
-                                <option value="loro">loro</option>
-                                <option value="iguana">iguana</option>
-                                <option value="araña">araña</option>
-                                <option value="otro">otro</option>
-                            </select>
-                            <input class="oculto" type="text" name="tipo-mascota-otro" size=40 maxlength=40>
-                            <h4>Sexo:</h4>
-                            <select name="sexo-mascota">
-                                <option value="">Seleccione el sexo</option>
-                                <option value="Macho">Macho</option>
-                                <option value="Hembra">Hembra</option>
-                                <option value="No Aplica">No Aplica</option>
-                            </select>
-                        </div>
-                        <div class="entrada">
-                            <h4>Fotos:</h4>
-                            <input class="especial" type="file" name="foto-mascota" id="foto-mascota">
-                            <button type="button" onclick="duplicar('foto-mascota',this)">agregar otra foto</button>
-                        </div>
-                    </div>
                     <div class="palido">
                         <h3>Informacion Mascota</h3>
                         <div class="entrada">
@@ -155,30 +126,40 @@
                                 <option value="No Aplica">No Aplica</option>
                             </select>
                         </div>
-                        <div class="entrada">
-                            <textarea id="comentarios" name="comentarios" placeholder="Ingrese aquí información adicional."></textarea>
-                        </div>
-                        <div>
-                            <h4 style="width: 100%">Fotos:</h4>
-                            <input class="especial" type="file" name="foto-mascota">
-                            <button type="button" onclick="duplicar('foto-mascota',this)">agregar otra foto</button>
+                        <<<<<<< HEAD <h3>Comentarios </h3>
+                            <div class="entrada" style="justify-content: center; padding-bottom: 10px;">
+                                <label for="comentarios"> </label>
+                                <textarea name="comentarios" id="comentarios"
+                                    placeholder="Ingrese aquí información adicional." rows="3" cols="40"></textarea>
+                                =======
+                                <div class="entrada">
+                                    <textarea id="comentarios" name="comentarios"
+                                        placeholder="Ingrese aquí información adicional."></textarea>
+                                    >>>>>>> master
+                                </div>
+                                <div>
+                                    <h4 style="width: 100%">Fotos:</h4>
+                                    <label>
+                                        <input class="especial" type="file" name="foto-mascota">
+
+                                </div>
+                            </div>
+                    </div>
+                    <div class="buttons" style="width: 85%; padding-bottom: 50px;">
+                        <!-- <button type="button" onclick="duplicar('infomascota',this)">agregar otra mascota</button> -->
+                        <button type="button" onclick="achicar('modalForm')">Cancelar</button>
+                        <button type="button" onclick="abrir('modalConfirmacion')">Publicar Post</button>
+                    </div>
+                    <div id="modalConfirmacion" class="modal oculto">
+                        <div class="modal-content2" style="width: 60%">
+                            <h4>¿Esta seguro que desea enviar esta información?</h4>
+                            <div class="buttons" style="width: 85%; padding-bottom: 50px;">
+                                <button type="button" onclick="achicar('modalConfirmacion')">No estoy seguro</button>
+                                <button type="submit" onclick="achicarDos()">Si, estoy total y absolutamente
+                                    seguro</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="buttons">
-                    <!-- <button type="button" onclick="duplicar('infomascota',this)">agregar otra mascota</button> -->
-                    <button type="button" onclick="achicar('modalForm')">Cancelar</button>
-                    <button type="button" onclick="abrir('modalConfirmacion')">Publicar Post</button>
-                </div>
-                <div id="modalConfirmacion" class="modal oculto">
-                    <div class="modal-content2" style="width: 60%">
-                        <h4>¿Esta seguro que desea enviar esta información?</h4>
-                        <div class="buttons">
-                            <button type="button" onclick="achicar('modalConfirmacion')">No estoy seguro</button>
-                            <button type="submit" onclick="achicarDos()">Si, estoy total y absolutamente seguro</button>
-                        </div>
-                    </div>
-                </div>
 
             </form>
         </div>

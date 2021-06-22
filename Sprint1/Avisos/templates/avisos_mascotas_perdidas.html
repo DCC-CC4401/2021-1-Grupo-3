@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="{% static 'styles/avisos_mascotas_perdidas.css' %}">
     <link rel="stylesheet" href="{% static 'styles/basic.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -25,13 +26,13 @@
 
         {% block content %}
         {% for aviso in todos%}
-        <h2>{{aviso.Titulo}}</h2>
-        <h3>{{aviso.Comuna}}, {{aviso.Region}} ({{aviso.Fecha}})</h3>
-        <p> {{aviso.Descripcion}} </p>
-        <h3>Detalles:</h3>
-        <p>Animal: {{aviso.Tipo_Animal}}</p>
-        <p>Sexo: {{aviso.Sexo}}</p>
-        <img src="{{aviso.Foto.url}}" alt="" width="50%">
+            <h2>{{aviso.Titulo}}</h2>
+            <h3>{{aviso.Comuna}}, {{aviso.Region}} ({{aviso.Fecha}})</h3>
+            <p> {{aviso.Descripcion}} </p>
+            <h3>Detalles:</h3>
+            <p>Animal: {{aviso.Tipo_Animal}}</p>
+            <p>Sexo: {{aviso.Sexo}}</p>
+            <img src="{{aviso.Foto.url}}" alt="" width="50%">
         {% endfor %}
         {% endblock %}
 
@@ -43,13 +44,14 @@
         <h3>Mis Avisos</h3>
 
         {% for aviso in mis_avisos%}
-        <h2>{{aviso.Titulo}}</h2>
-        <h3>{{aviso.Comuna}}, {{aviso.Region}} ({{aviso.Fecha}})</h3>
-        <p> {{aviso.Descripcion}} </p>
-        <h3>Detalles:</h3>
-        <p>Animal: {{aviso.Tipo_Animal}}</p>
-        <p>Sexo: {{aviso.Sexo}}</p>
-        <img src="{{aviso.Foto.url}}" alt="" width="50%">
+            <h2>{{aviso.Titulo}}</h2>
+            <button class="btn"><i class="fa fa-trash" ></i> <a href="{% url 'aviso_remove' pk=aviso.pk %}" style="text-decoration: none; color: white;"> Eliminar </a> </button>
+            <h3>{{aviso.Comuna}}, {{aviso.Region}} ({{aviso.Fecha}})</h3>
+            <p> {{aviso.Descripcion}} </p>
+            <h3>Detalles:</h3>
+            <p>Animal: {{aviso.Tipo_Animal}}</p>
+            <p>Sexo: {{aviso.Sexo}}</p>
+            <img src="{{aviso.Foto.url}}" alt="" width="50%">
         {% endfor %}
 
     </div>

@@ -4,6 +4,8 @@ from Avisos.models import *
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login,logout
+from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect
 
 
 # Create your views here.
@@ -105,6 +107,16 @@ def adoption_form(request):
         return HttpResponseRedirect('/inicio')
     else:
         return HttpResponseRedirect('/register_user')
+
+def aviso_remove(request, pk):
+    if request.user.is_authenticated:
+        post = get_object_or_404(Aviso, pk=pk)
+        if request.user==post.Nombre_De_Usuario:
+            post.delete()
+    return redirect('mascotas_perdidas')
+
+
+
 
 def aviso_adopcion_en_detalle(request):
     if request.user.is_authenticated:

@@ -20,6 +20,7 @@ class Aviso(models.Model):
     Descripcion = models.CharField(max_length=250, blank=True)
     Foto = models.ImageField(upload_to="images/")
     Estado_del_Aviso = models.BooleanField(default=False)
+    
 
 class Adopcion(models.Model):
     Id = models.BigAutoField(primary_key=True)
@@ -32,6 +33,6 @@ class Adopcion(models.Model):
     Caracteristicas = models.CharField(max_length=250)
     Comentarios = models.CharField(max_length=250, blank=True)
     Edad = models.IntegerField(default=0)
-    Foto = models.ImageField(upload_to="images/")
+    Foto = models.ImageField(upload_to="images")
     Estado_del_Aviso = models.BooleanField(default=False)
     Numero_Telefonico = models.CharField(max_length=8)
