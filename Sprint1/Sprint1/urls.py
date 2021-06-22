@@ -25,5 +25,6 @@ urlpatterns = [
     path('inicio/', inicio, name='inicio'),
     path('logout/', logout_user, name='logout_user'),
     path('mascotas_perdidas/', avisos_mascotas_perdidas, name= 'mascotas_perdidas'),
-    path('formulario_adopcion/', adoption_form, name='formulario_adopcion')
+    path('formulario_adopcion/', adoption_form, name='formulario_adopcion'),
+    path('post/<pk>/remove/', aviso_remove, name='aviso_remove'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
