@@ -49,8 +49,7 @@
     <!-- ___________________________MODAL FORMULARIO______________________________ -->
     <div id="modalForm" class="modal oculto">
         <div class="modal-content2">
-            <form method="post" id="formulario" enctype="multipart/form-data" onsubmit="return validar()">{% csrf_token
-                %}
+            <form method="post" id="formulario" enctype="multipart/form-data" onsubmit="return validar()">{% csrf_token %}
                 <div class="error oculto" id="error">
                     <p>error</p>
                 </div>
@@ -126,22 +125,18 @@
                                 <option value="No Aplica">No Aplica</option>
                             </select>
                         </div>
-                        <<<<<<< HEAD <h3>Comentarios </h3>
+                        <h3>Comentarios </h3>
                             <div class="entrada" style="justify-content: center; padding-bottom: 10px;">
                                 <label for="comentarios"> </label>
                                 <textarea name="comentarios" id="comentarios"
                                     placeholder="Ingrese aquí información adicional." rows="3" cols="40"></textarea>
-                                =======
-                                <div class="entrada">
-                                    <textarea id="comentarios" name="comentarios"
-                                        placeholder="Ingrese aquí información adicional."></textarea>
-                                    >>>>>>> master
-                                </div>
-                                <div>
-                                    <h4 style="width: 100%">Fotos:</h4>
-                                    <label>
-                                        <input class="especial" type="file" name="foto-mascota">
-
+                                
+                            </div>
+                            <div>
+                                <h4 style="width: 100%">Fotos:</h4>
+                                <div style="padding-left: 50px;">
+                                <label>
+                                    <input class="especial" type="file" name="foto-mascota">
                                 </div>
                             </div>
                     </div>
