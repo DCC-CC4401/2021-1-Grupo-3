@@ -36,13 +36,8 @@
             <div id=boton_reportar>
                 <button type="button" onclick="abrir('modalForm')">Reportar Mascota</button>
             </div>
-
             <div id=boton_adoptar>
-<<<<<<< HEAD
-                <button type="button" onclick="abrir('modalForm_adopcion')">Dar en adopción</button>
-=======
                 <a href="{% url 'formulario_adopcion' %}"><button type="button">Dar en Adopción</button></a>
->>>>>>> d466fc66194e2d29a2c3b4a64666a61f26fbca8b
             </div>
 
         </div>
@@ -54,15 +49,14 @@
     <!-- ___________________________MODAL FORMULARIO______________________________ -->
     <div id="modalForm" class="modal oculto">
         <div class="modal-content2">
-            <form method="post" id="formulario" onsubmit="return validar()">{% csrf_token %}
+            <form method="post" id="formulario" enctype="multipart/form-data" onsubmit="return validar()">{% csrf_token %}
                 <div class="error oculto" id="error">
                     <p>error</p>
                 </div>
                 <div class="informe palido" id="post-info">
                     <div class="entrada">
                         <h4>Título Publicación</h4>
-                        <input type="text" id="title" required placeholder="Ingrese un título">
-
+                        <input type="text" id="title" name="title" required placeholder="Ingrese un título">
                         <select name="tipo-pub" id="tipo-pub" required>
                             <option value="">Seleccione su tipo de publicación</option>
                             <option value="1">Perdí mi mascota</option>
@@ -162,7 +156,7 @@
                             </select>
                         </div>
                         <div class="entrada">
-                            <textarea id="comentarios" placeholder="Ingrese aquí información adicional."></textarea>
+                            <textarea id="comentarios" name="comentarios" placeholder="Ingrese aquí información adicional."></textarea>
                         </div>
                         <div>
                             <h4 style="width: 100%">Fotos:</h4>

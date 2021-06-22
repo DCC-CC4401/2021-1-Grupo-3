@@ -4,10 +4,9 @@
 <head>
     {% load static %}
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{% static 'styles/avisos_mascotas_perdidas.css' %}">
     <link rel="stylesheet" href="{% static 'styles/avisos_adopcion.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/avisos_mascotas_perdidas.css' %}">
     <link rel="stylesheet" href="{% static 'styles/basic.css' %}">
-    <link rel="stylesheet" href="{% static 'styles/form.css' %}">
     <script src="{% static 'js/funciones.js' %}"></script>
 </head>
 
@@ -16,188 +15,50 @@
 
     <!-- TABS-->
     <div class=tabs>
-        <button class="tablink" onclick="openPage('Todos_los_Avisos', this, '#f29d46')" id="defaultOpen">Todos los
+        <button class="tablink" onclick="openPage('Todos_los_Avisos_Adopcion', this, '#f29d46')" id="defaultOpen">Todos los
             Avisos</button>
-        {% if user.is_authenticated %}
-        <button class="tablink" onclick="openPage('Mis_Avisos', this, '#f29d46')">Mis Avisos</button>
-        {% endif %}
+        <button class="tablink" onclick="openPage('Mis_Avisos_Adopcion', this, '#f29d46')">Mis Avisos</button>
     </div>
 
     <div class=boton_adopcion>
         <div id=boton_adoptar>
-            <button type="button" onclick="abrir('modalForm')">Dar en adopción</button>
+            <a href="{% url 'formulario_adopcion' %}"><button type="button">Dar en Adopción</button></a>
         </div>
     </div>
 
-    <!-- ___________________________MODAL FORMULARIO______________________________ -->
-    <div id="modalForm" class="modal oculto">
-        <div class="modal-content2">
-            <form method="post" id="formulario" onsubmit="return validar()">{% csrf_token %}
-                <div class="error oculto" id="error">
-                    <p>error</p>
-                </div>
-                <div class="informe palido">
-                    <div class="oculto" id="infomascota">
-                        <h3>Informacion Mascota</h3>
-                        <div class="entrada">
-                            <h4>Tipo:</h4>
-                            <select name="tipo-mascota" onchange="addOtro(this)">
-                                <option value="">Seleccione el tipo</option>
-                                <option value="perro">perro</option>
-                                <option value="gato">gato</option>
-                                <option value="pez">pez</option>
-                                <option value="tortuga">tortuga</option>
-                                <option value="hámster">hámster</option>
-                                <option value="loro">loro</option>
-                                <option value="iguana">iguana</option>
-                                <option value="araña">araña</option>
-                                <option value="otro">otro</option>
-                            </select>
-                            <input class="oculto" type="text" name="tipo-mascota-otro" size=40 maxlength=40>
-                            <h4>Sexo:</h4>
-                            <select name="sexo-mascota">
-                                <option value="">Seleccione el sexo</option>
-                                <option value="Macho">Macho</option>
-                                <option value="Hembra">Hembra</option>
-                                <option value="No Aplica">No Aplica</option>
-                            </select>
-                        </div>
-                        <div class="entrada">
-                            <h4>Edad:</h4>
-                            <input type="text" id="edad" required placeholder="Ingrese edad">
-                            <h4>Región:</h4>
-                        </div>
-                        <div class="entrada">
-                            <h4>Fotos:</h4>
-                            <input class="especial" type="file" name="foto-mascota" id="foto-mascota">
-                            <button type="button" onclick="duplicar('foto-mascota',this)">agregar otra foto</button>
-                        </div>
-                    </div>
-                    <div class="palido">
-                        <h3>Informacion Mascota</h3>
-                        <div class="entrada">
-                            <h4>Tipo:</h4>
-                            <select name="tipo-mascota" required onchange="addOtro(this)">
-                                <option value="">Seleccione el tipo</option>
-                                <option value="perro">perro</option>
-                                <option value="gato">gato</option>
-                                <option value="pez">pez</option>
-                                <option value="tortuga">tortuga</option>
-                                <option value="hámster">hámster</option>
-                                <option value="loro">loro</option>
-                                <option value="iguana">iguana</option>
-                                <option value="araña">araña</option>
-                                <option value="otro">otro</option>
-                            </select>
-                            <input class="oculto" type="text" name="tipo-mascota-otro" size=40 maxlength=40>
-
-                            <h4>Sexo:</h4>
-                            <select name="sexo-mascota">
-                                <option value="">Seleccione el sexo</option>
-                                <option value="Macho">Macho</option>
-                                <option value="Hembra">Hembra</option>
-                                <option value="No Aplica">No Aplica</option>
-                            </select>
-                        </div>
-                        <div class="entrada">
-                            <textarea id="comentarios" placeholder="Ingrese aquí información adicional."></textarea>
-                        </div>
-                        <div>
-                            <h4 style="width: 100%">Fotos:</h4>
-                            <input class="especial" type="file" name="foto-mascota">
-                            <button type="button" onclick="duplicar('foto-mascota',this)">agregar otra foto</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="informe palido" id="domicilio">
-                    <h3>Datos de Contacto</h3>
-                    <div class="entrada">
-                        <h4>Número de tel.(8 dígitos) (+569)</h4>
-                        <input type="text" id="number" required placeholder="Ingrese número">
-                    </div>
-                    <div class="entrada">
-                        <h4>Región:</h4>
-                        <select name="region" id="region" required onchange="comunasgenerate()">
-                            <option value="">Seleccione su Region</option>
-                            <option value="Región Metropolitana de Santiago">Región Metropolitana de Santiago</option>
-                            <option value="Región de Arica y Parinacota">Región de Arica y Parinacota</option>
-                            <option value="Región de Tarapacá">Región de Tarapacá</option>
-                            <option value="Región de Antofagasta">Región de Antofagasta</option>
-                            <option value="Región de Atacama">Región de Atacama</option>
-                            <option value="Región de Coquimbo">Región de Coquimbo</option>
-                            <option value="Región de Valparaíso">Región de Valparaíso</option>
-                            <option value="Región del Libertador Gral. Bernardo O Higgins">Región del Libertador Gral.
-                                Bernardo O Higgins</option>
-                            <option value="Región del Maule">Región del Maule</option>
-                            <option value="Región de Ñuble">Región de Ñuble</option>
-                            <option value="Región del Biobío">Región del Biobío</option>
-                            <option value="Región de la Araucanía">Región de la Araucanía</option>
-                            <option value="Región de Los Ríos">Región de Los Ríos</option>
-                            <option value="Región de Los Lagos">Región de Los Lagos</option>
-                            <option value="Región Aisén del Gral. Carlos Ibáñez del Campo">Región Aisén del Gral. Carlos
-                                Ibáñez del Campo</option>
-                            <option value="Región de Magallanes y de la Antártica Chilena">Región de Magallanes y de la
-                                Antártica Chilena</option>
-                        </select>
-                        <h4>Comuna:</h4>
-                        <select name="comuna" id="comuna" required>
-                            <option value="">Seleccione su Comuna</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="buttons">
-                    <!-- <button type="button" onclick="duplicar('infomascota',this)">agregar otra mascota</button> -->
-                    <button type="button" onclick="achicar('modalForm')">Cancelar</button>
-                    <button type="button" onclick="abrir('modalConfirmacion')">Publicar Post</button>
-                </div>
-                <div id="modalConfirmacion" class="modal oculto">
-                    <div class="modal-content2" style="width: 60%">
-                        <h4>¿Esta seguro que desea enviar esta información?</h4>
-                        <div class="buttons">
-                            <button type="button" onclick="achicar('modalConfirmacion')">No estoy seguro</button>
-                            <button type="submit" onclick="achicarDos()">Si, estoy total y absolutamente seguro</button>
-                        </div>
-                    </div>
-                </div>
-
-            </form>
-        </div>
-    </div>
-
-    <div id="Todos_los_Avisos" class="tabcontent">
+    <div id="Todos_los_Avisos_Adopcion" class="tabcontent">
         <h3>Todos los Avisos</h3>
 
         {% block content %}
-        {% for aviso in todos%}
-        <h2>{{aviso.Titulo}}</h2>
-        <h3>{{aviso.Comuna}}, {{aviso.Region}} ({{aviso.Fecha}})</h3>
-        <p> {{aviso.Descripcion}} </p>
-        <h3>Detalles:</h3>
-        <p>Animal: {{aviso.Tipo_Animal}}</p>
-        <p>Sexo: {{aviso.Sexo}}</p>
-        <img src="{{aviso.Foto.url}}" alt="" width="50%">
+        {% for aviso_adopcion in todos_adopcion%}
+        <img src="{{aviso_adopcion.Foto.url}}" alt="" width="50%">
+        <h2>{{aviso_adopcion.Caracteristicas}}</h2>
+        <div class=boton_ver>
+            <button class="boton_aviso" onclick="location.href=
+            '/aviso_adopcion_en_detalle?id={{aviso_adopcion.Id}}'">Ver mas</button> 
+        </div>
+        <h3>({{aviso_adopcion.Fecha}})</h3>
+        <h3>{{aviso_adopcion.Region}}</h3>
+        <h3>{{aviso_adopcion.Comuna}}</h3>
         {% endfor %}
         {% endblock %}
 
     </div>
 
-
-    {% if user.is_authenticated %}
-    <div id="Mis_Avisos" class="tabcontent">
+    <div id="Mis_Avisos_Adopcion" class="tabcontent">
         <h3>Mis Avisos</h3>
-
-        {% for aviso in mis_avisos%}
-        <h2>{{aviso.Titulo}}</h2>
-        <h3>{{aviso.Comuna}}, {{aviso.Region}} ({{aviso.Fecha}})</h3>
-        <p> {{aviso.Descripcion}} </p>
-        <h3>Detalles:</h3>
-        <p>Animal: {{aviso.Tipo_Animal}}</p>
-        <p>Sexo: {{aviso.Sexo}}</p>
-        <img src="{{aviso.Foto.url}}" alt="" width="50%">
+        {% for aviso_adopcion in mis_avisos_adopcion%}
+        <img src="{{aviso_adopcion.Foto.url}}" alt="" width="50%">
+        <h2>{{aviso_adopcion.Caracteristicas}}</h2>
+        <div class=boton_ver>
+            <button class="boton_aviso" onclick="location.href=
+            '/aviso_adopcion_en_detalle?id={{aviso_adopcion.Id}}'">Ver mas</button> 
+        </div>
+        <h3>({{aviso_adopcion.Fecha}})</h3>
+        <h3>{{aviso_adopcion.Region}}</h3>
+        <h3>{{aviso_adopcion.Comuna}}</h3>
         {% endfor %}
-
     </div>
-    {% endif %}
 
     <!-- SCRIPT TABS -->
     <script>
