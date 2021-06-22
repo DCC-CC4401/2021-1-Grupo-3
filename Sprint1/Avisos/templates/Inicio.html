@@ -36,7 +36,6 @@
             <div id=boton_reportar>
                 <button type="button" onclick="abrir('modalForm')">Reportar Mascota</button>
             </div>
-
             <div id=boton_adoptar>
                 <a href="{% url 'formulario_adopcion' %}"><button type="button">Dar en Adopción</button></a>
             </div>
@@ -50,7 +49,8 @@
     <!-- ___________________________MODAL FORMULARIO______________________________ -->
     <div id="modalForm" class="modal oculto">
         <div class="modal-content2">
-            <form method="post" id="formulario" enctype="multipart/form-data" onsubmit="return validar()">{% csrf_token %}
+            <form method="post" id="formulario" enctype="multipart/form-data" onsubmit="return validar()">{% csrf_token
+                %}
                 <div class="error oculto" id="error">
                     <p>error</p>
                 </div>
@@ -126,33 +126,40 @@
                                 <option value="No Aplica">No Aplica</option>
                             </select>
                         </div>
-                        <h3>Comentarios </h3>
-                        <div class="entrada" style="justify-content: center; padding-bottom: 10px;">
-                            <label for="comentarios"> </label>
-                            <textarea name="comentarios" id="comentarios" placeholder="Ingrese aquí información adicional." rows="3" cols="40"></textarea>
-                        </div>
-                        <div>
-                            <h4 style="width: 100%">Fotos:</h4>
-                            <label>
-                            <input class="especial" type="file" name="foto-mascota">
-                            
+                        <<<<<<< HEAD <h3>Comentarios </h3>
+                            <div class="entrada" style="justify-content: center; padding-bottom: 10px;">
+                                <label for="comentarios"> </label>
+                                <textarea name="comentarios" id="comentarios"
+                                    placeholder="Ingrese aquí información adicional." rows="3" cols="40"></textarea>
+                                =======
+                                <div class="entrada">
+                                    <textarea id="comentarios" name="comentarios"
+                                        placeholder="Ingrese aquí información adicional."></textarea>
+                                    >>>>>>> master
+                                </div>
+                                <div>
+                                    <h4 style="width: 100%">Fotos:</h4>
+                                    <label>
+                                        <input class="especial" type="file" name="foto-mascota">
+
+                                </div>
+                            </div>
+                    </div>
+                    <div class="buttons" style="width: 85%; padding-bottom: 50px;">
+                        <!-- <button type="button" onclick="duplicar('infomascota',this)">agregar otra mascota</button> -->
+                        <button type="button" onclick="achicar('modalForm')">Cancelar</button>
+                        <button type="button" onclick="abrir('modalConfirmacion')">Publicar Post</button>
+                    </div>
+                    <div id="modalConfirmacion" class="modal oculto">
+                        <div class="modal-content2" style="width: 60%">
+                            <h4>¿Esta seguro que desea enviar esta información?</h4>
+                            <div class="buttons" style="width: 85%; padding-bottom: 50px;">
+                                <button type="button" onclick="achicar('modalConfirmacion')">No estoy seguro</button>
+                                <button type="submit" onclick="achicarDos()">Si, estoy total y absolutamente
+                                    seguro</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="buttons" style="width: 85%; padding-bottom: 50px;">
-                    <!-- <button type="button" onclick="duplicar('infomascota',this)">agregar otra mascota</button> -->
-                    <button type="button" onclick="achicar('modalForm')">Cancelar</button>
-                    <button type="button" onclick="abrir('modalConfirmacion')">Publicar Post</button>
-                </div>
-                <div id="modalConfirmacion" class="modal oculto">
-                    <div class="modal-content2" style="width: 60%">
-                        <h4>¿Esta seguro que desea enviar esta información?</h4>
-                        <div class="buttons" style="width: 85%; padding-bottom: 50px;">
-                            <button type="button" onclick="achicar('modalConfirmacion')">No estoy seguro</button>
-                            <button type="submit" onclick="achicarDos()">Si, estoy total y absolutamente seguro</button>
-                        </div>
-                    </div>
-                </div>
 
             </form>
         </div>

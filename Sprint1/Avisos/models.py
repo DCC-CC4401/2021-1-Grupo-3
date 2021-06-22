@@ -12,13 +12,13 @@ class Aviso(models.Model):
     Motivo = models.CharField(max_length=15)
     Titulo = models.CharField(max_length=30)
     Comuna = models.CharField(max_length=30)
-    Region = models.CharField(max_length=40)    
+    Region = models.CharField(max_length=40)
     Fecha = models.DateTimeField(default=datetime.now())
     Tipo_Animal = models.CharField(max_length=40)
     Sexo = models.CharField(max_length=15)
     Nombre_De_Usuario = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     Descripcion = models.CharField(max_length=250, blank=True)
-    Foto = models.ImageField(upload_to="images")
+    Foto = models.ImageField(upload_to="images/")
     Estado_del_Aviso = models.BooleanField(default=False)
     
 

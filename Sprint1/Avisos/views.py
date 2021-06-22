@@ -77,6 +77,15 @@ def avisos_mascotas_perdidas(request):
             else:
                 return HttpResponseRedirect('/register_user')
 
+def avisos_adopcion(request):
+    if request.user.is_authenticated:
+        todos_adopcion= Adopcion.objects.order_by('-Fecha')
+        mis_avisos_adopcion= Adopcion.objects.filter(Nombre_De_Usuario=request.user).order_by('-Fecha')
+        if request.method == 'GET':
+            return render(request,"avisos_adopcion.html", {'todos_adopcion': todos_adopcion, 
+            'mis_avisos_adopcion':mis_avisos_adopcion})
+    else:
+        return HttpResponseRedirect('/register_user')
 
 def adoption_form(request):
     if request.user.is_authenticated:
@@ -88,10 +97,10 @@ def adoption_form(request):
             Tipo_Animal = request.POST['tipo-mascota']
             sexo = request.POST['sexo-mascota']
             foto = request.FILES['foto-mascota']
-            caracteristicas = request.POST.get('caracteristicas', ' ')
+            caracteristicas = request.POST['caracteristicas']
             edad = request.POST['edad']
-            comentario = request.POST.get('comentarios', ' ')
-            numero = request.POST.get('numero', ' ')
+            comentario = request.POST['comentarios']
+            numero = request.POST['numero']
             adopcion = Adopcion.objects.create(Comuna=comuna, Region=region, Tipo_Animal=Tipo_Animal, Sexo=sexo,
             Nombre_De_Usuario=request.user, Caracteristicas=caracteristicas, Comentarios=comentario, Foto=foto,
             Numero_Telefonico=numero, Edad=edad)
@@ -109,3 +118,10 @@ def aviso_remove(request, pk):
 
 
 
+def aviso_adopcion_en_detalle(request):
+    if request.user.is_authenticated:
+        id=request.GET["id"]
+        aviso_en_detalle= Adopcion.objects.filter(Id=id)
+        return render(request,"aviso_adopcion_en_detalle.html",{'aviso_en_detalle': aviso_en_detalle})
+    else:
+        return HttpResponseRedirect('/register_user')

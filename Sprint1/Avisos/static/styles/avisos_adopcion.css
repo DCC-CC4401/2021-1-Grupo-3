@@ -1,0 +1,23 @@
+.boton_ver{
+    float : center;
+    width: 30%;
+}
+
+.boton_adopcion{
+    float: right;
+    width: 30%;
+}
+
+
+.mitad_izq{
+    float: left;
+    width: 50%;
+}
+
+.mitad_der{
+    float: right;
+    width: 50%;
+}
+
+#Todos_los_Avisos_Adopcion {background-color: #f6f6f6;}
+#Mis_Avisos_Adopcion {background-color: #f6f6f6;}
