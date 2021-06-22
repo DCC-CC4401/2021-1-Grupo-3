@@ -15,7 +15,7 @@
         <div class="login">
             {% if user.is_authenticated %}
 
-            <a class="link" href="https://www.google.com"> <i class="fa fa-fw fa-user"></i> Usuario</a>
+            <a class="link" href="{%url 'inicio'%}"> <i class="fa fa-fw fa-user"></i> Usuario</a>
             <!-- Esta parte hay que arreglarla cuando se creen los usuarios -->
             <a class="link" href="{% url 'logout_user' %}">Cerrar sesión</a>
             {% else %}
@@ -47,7 +47,7 @@
         <ul id="barra">
             <li><a class="link" href="{% url 'inicio' %}">Inicio</a> </li>
             <li><a class="link" href="{% url 'mascotas_perdidas' %}">Mascotas Perdidas</a> </li>
-            <li><a class="link" href="#">Mascotas en Adopción</a> </li>
+            <li><a class="link" href="{% url 'avisos_adopcion' %}">Mascotas en Adopción</a> </li>
         </ul>
     </div>
 

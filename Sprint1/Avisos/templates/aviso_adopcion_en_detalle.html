@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang=es>
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'styles/avisos_adopcion.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/basic.css' %}">
+    <script src="{% static 'js/funciones.js' %}"></script>
+</head>
+
+<body>
+    {% include "superior.html"%}
+
+    <center><h1>Aviso en detalle</h1></center>
+    {%for aviso_en_detalle in aviso_en_detalle%}
+    <div class="mitad_izq">
+        <img src="{{aviso_en_detalle.Foto.url}}" alt="" width="50%">
+    </div>
+    <div class="mitad_der">
+        <h2>Descripción</h2>
+        <h3>Especie: {{aviso_en_detalle.Tipo_Animal}}</h3>
+        <h3>Sexo: {{aviso_en_detalle.Sexo}}</h3>
+        <h3>Edad: {{aviso_en_detalle.Edad}} meses</h3>
+        <h3>Fecha: {{aviso_en_detalle.Fecha}}</h3>
+        <h3>Características: {{aviso_en_detalle.Caracteristicas}}</h3>
+        <h3>Comentarios: {{aviso_en_detalle.Comentarios}}</h3>
+        <h2>Contacto</h2>
+        <h3>Número: {{aviso_en_detalle.Numero_Telefonico}}</h3>
+        <h3>Correo: {{aviso_en_detalle.Nombre_De_Usuario}}</h3>
+        <h3>Region: {{aviso_en_detalle.Region}}</h3>
+        <h3>Comuna: {{aviso_en_detalle.Comuna}}</h3>
+    </div>
+    {%endfor%}
