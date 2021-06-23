@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{% static 'styles/avisos_adopcion.css' %}">
     <link rel="stylesheet" href="{% static 'styles/avisos_mascotas_perdidas.css' %}">
     <link rel="stylesheet" href="{% static 'styles/basic.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="{% static 'js/funciones.js' %}"></script>
 </head>
 
@@ -49,6 +50,7 @@
         <h3>Mis Avisos</h3>
         {% for aviso_adopcion in mis_avisos_adopcion%}
         <img src="{{aviso_adopcion.Foto.url}}" alt="" width="50%">
+        <button class="btn"><i class="fa fa-trash" ></i> <a href="{% url 'adopcion_remove' pk=aviso_adopcion.pk %}" style="text-decoration: none; color: white;"> Eliminar </a> </button>
         <h2>{{aviso_adopcion.Caracteristicas}}</h2>
         <div class=boton_ver>
             <button class="boton_aviso" onclick="location.href=
