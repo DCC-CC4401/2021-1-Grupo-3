@@ -45,7 +45,7 @@
 
         {% for aviso in mis_avisos%}
             <h2>{{aviso.Titulo}}</h2>
-            <button class="btn"><i class="fa fa-trash" ></i> <a href="{% url 'aviso_remove' pk=aviso.pk %}" style="text-decoration: none; color: white;"> Eliminar </a> </button>
+            <button class="btn"><i class="fa fa-trash" ></i> <a href="{% url 'mp_remove' pk=aviso.pk %}" style="text-decoration: none; color: white;"> Eliminar </a> </button>
             <h3>{{aviso.Comuna}}, {{aviso.Region}} ({{aviso.Fecha}})</h3>
             <p> {{aviso.Descripcion}} </p>
             <h3>Detalles:</h3>

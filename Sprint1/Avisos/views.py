@@ -108,15 +108,19 @@ def adoption_form(request):
     else:
         return HttpResponseRedirect('/register_user')
 
-def aviso_remove(request, pk):
+def mp_remove(request, pk):
     if request.user.is_authenticated:
         post = get_object_or_404(Aviso, pk=pk)
         if request.user==post.Nombre_De_Usuario:
             post.delete()
     return redirect('mascotas_perdidas')
 
-
-
+def adopcion_remove(request, pk):
+    if request.user.is_authenticated:
+        post = get_object_or_404(Adopcion, pk=pk)
+        if request.user==post.Nombre_De_Usuario:
+            post.delete()
+    return redirect('avisos_adopcion')
 
 def aviso_adopcion_en_detalle(request):
     if request.user.is_authenticated:
