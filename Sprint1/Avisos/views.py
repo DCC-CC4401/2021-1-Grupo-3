@@ -126,6 +126,11 @@ def aviso_adopcion_en_detalle(request):
     if request.user.is_authenticated:
         id=request.GET["id"]
         aviso_en_detalle= Adopcion.objects.filter(Id=id)
-        return render(request,"aviso_adopcion_en_detalle.html",{'aviso_en_detalle': aviso_en_detalle})
+        nombre= aviso_en_detalle[0].Nombre_De_Usuario
+        usuario= User.objects.filter(username=nombre)
+        email= usuario[0].email
+        print(email)
+        return render(request,"aviso_adopcion_en_detalle.html",{'aviso_en_detalle': aviso_en_detalle ,
+        'email': email})
     else:
         return HttpResponseRedirect('/register_user')
