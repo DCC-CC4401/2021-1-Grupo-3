@@ -29,7 +29,12 @@
 
     <div id="Todos_los_Avisos_Adopcion" class="tabcontent">
         <h3>Todos los Avisos</h3>
-
+        <div style="padding-top: 15px; padding-bottom: 15px;">
+            <form method="GET">
+                <input type="text" placeholder="Buscar" name="buscar">
+                <button type="submit"> Buscar </button>
+            </form>
+        </div>
         {% block content %}
         {% for aviso_adopcion in todos_adopcion%}
         <img src="{{aviso_adopcion.Foto.url}}" alt="" width="50%">

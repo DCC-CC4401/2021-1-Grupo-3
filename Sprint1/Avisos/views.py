@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login,logout
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
-
+from django.db.models import Q
 
 # Create your views here.
 def register_user(request):
@@ -58,6 +58,9 @@ def logout_user(request):
 
 def avisos_mascotas_perdidas(request):
     todos = Aviso.objects.order_by('-Fecha')
+    if "buscar" in request.GET:
+        busq = request.GET["buscar"]
+        todos = Aviso.objects.filter(Q(Titulo__icontains=busq) | Q(Descripcion__icontains=busq)).order_by('-Fecha')
     
 
     if request.user.is_authenticated:
@@ -81,6 +84,10 @@ def avisos_adopcion(request):
     if request.user.is_authenticated:
         todos_adopcion= Adopcion.objects.order_by('-Fecha')
         mis_avisos_adopcion= Adopcion.objects.filter(Nombre_De_Usuario=request.user).order_by('-Fecha')
+        if "buscar" in request.GET:
+            busq = request.GET["buscar"]
+            todos_adopcion = Adopcion.objects.filter(Q(Caracteristicas__icontains=busq) | Q(Comentarios__icontains=busq)).order_by('-Fecha')
+
         if request.method == 'GET':
             return render(request,"avisos_adopcion.html", {'todos_adopcion': todos_adopcion, 
             'mis_avisos_adopcion':mis_avisos_adopcion})
