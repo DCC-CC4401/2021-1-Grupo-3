@@ -30,6 +30,13 @@
                     <label for="contraseña">Contraseña</label>
                     <input type="password" class="form-control" id="contraseña" name="contraseña" required>
                 </div>
+                {% block content %}
+                    {% for mess in message %}
+                    <div style="font-size: small;">
+                        {{mess}}
+                    </div>
+                    {% endfor %}
+                {% endblock %}
                 <div class="buttons">
                     <button type="submit">Entrar</button>
                     <a href="{% url 'register_user' %}"><button type="button">Registrarse</button></a>

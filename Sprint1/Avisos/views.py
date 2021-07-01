@@ -50,7 +50,9 @@ def inicio(request):
                 login(request,usuario)
                 return render(request,"Inicio.html", {'last': last})
             else:
-                return HttpResponseRedirect('/register_user')
+                mensaje ="Usuario o contraseña inválidos"
+                return render(request,"Inicio.html", {'message': [mensaje]})
+                #return HttpResponseRedirect('/register_user')
 
 def logout_user(request):
     logout(request)
@@ -78,7 +80,8 @@ def avisos_mascotas_perdidas(request):
                 login(request,usuario)
                 return render(request,"avisos_mascotas_perdidas.html", {'todos': todos})
             else:
-                return HttpResponseRedirect('/register_user')
+                mensaje ="Usuario o contraseña inválidos"
+                return render(request,"Inicio.html", {'message': [mensaje]})
 
 def avisos_adopcion(request):
     if request.user.is_authenticated:
