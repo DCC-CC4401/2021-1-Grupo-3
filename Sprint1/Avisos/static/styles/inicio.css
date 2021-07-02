@@ -7,6 +7,15 @@
 
 }
 
+.button-container {
+    text-align: right; 
+}
+
+.img-button {
+    width: 50%;
+    padding: 10px;
+}
+
 .bloque_der {
     float: right;
     width: 30%;
@@ -17,4 +26,9 @@
     width: 70%;
 }
 
-
+.aviso-foto{
+  width: 50% !important;
+  height: 25vw;
+  object-fit: cover;
+  border: 5px solid black;
+}

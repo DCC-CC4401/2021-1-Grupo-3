@@ -6,6 +6,12 @@ body, html {
   margin: 0;
   font-family: Arial;
 }
+.tabs {
+  width: 85vw;
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+}
 
 /* Style tab links */
 .tablink {
@@ -15,29 +21,76 @@ body, html {
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 14px 16px;
+  padding: 10px 10px;
   font-size: 17px;
-  width: 25%;
+  width: 18vw;
+  border-radius: 0;
+  height: auto;
+}
+
+.tablink span{
+  vertical-align: middle;
 }
 
 .tablink:hover {
   background-color: #777;
 }
 
-.tabs {
-  margin-left: 100px;
-  margin-right:100px;
+.img-button {
+  width: 25vw;   
+}
+
+.title-nav {
+  display: flex;
+  justify-content: space-between;
+}
+.title {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 15px 0;
+  vertical-align: middle;
 }
 
 /* Style the tab content (and add height:100% for full page content) */
 .tabcontent {
   color: black;
   display: none;
-  padding: 100px 20px;
+  padding: 25px 20px;
   height: 100%;
-  margin-left:100px;
-  margin-right: 100px;
+  width: 85vw;
+  margin: auto;
 }
 
-#Todos_los_Avisos {background-color: #f6f6f6;}
-#Mis_Avisos {background-color: #f6f6f6;}
+.avisos {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.aviso{
+  flex-basis: 33%;
+  width: 25%;
+  margin: 0 auto;
+}
+
+.aviso h2{
+  text-align: center;
+}
+
+.aviso h3 {
+  font-size: 15px;
+}
+
+.aviso img {
+  width: 100% !important;
+  height: 25vw;
+  object-fit: cover;
+  border: 5px solid black;
+}
+
+.detalles {
+  display: flex;
+}
+
+.detalles p {
+  padding-left: 5px;
+}

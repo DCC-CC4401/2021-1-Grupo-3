@@ -12,6 +12,13 @@
 
 <body>
     {% include "superior.html"%}
+    <div>
+        <ul id="barra">
+            <li><a class="link orange" href="{% url 'inicio' %}">Inicio</a> </li>
+            <li><a class="link" href="{% url 'mascotas_perdidas' %}">Mascotas Perdidas</a> </li>
+            <li onclick="abrir('modalDisclaimer')"><span class="false-link">Mascotas en Adopción</span></li>
+        </ul>
+    </div>
 
     <div class=bloque_principal>
 
@@ -26,140 +33,49 @@
             <h3>Detalles:</h3>
             <p>Animal: {{aviso.Tipo_Animal}}</p>
             <p>Sexo: {{aviso.Sexo}}</p>
-            <img src="{{aviso.Foto.url}}" alt="" width="50%">
+            <img class="aviso-foto" src="{{aviso.Foto.url}}" alt="">
             {% endfor %}
             {% endblock %}
 
         </div>
-
+        {% if user.is_authenticated %}
         <div class=bloque_der>
-            <div id=boton_reportar>
-                <button type="button" onclick="abrir('modalForm')">Reportar Mascota</button>
+            <div id=boton_reportar class="button-container">
+                <a href="{% url 'formulario_perdidas' %}">
+                    <img class="img-button" src="{% static 'images/boton1.jpg' %}" alt="">
+                </a>
+
             </div>
-            <div id=boton_adoptar>
-                <a href="{% url 'formulario_adopcion' %}"><button type="button">Dar en Adopción</button></a>
+            <div id=boton_adoptar class="button-container">
+                <a href="{% url 'formulario_adopcion' %}">
+                    <img class="img-button" src="{% static 'images/boton2.jpg' %}" alt="">
+                </a>
             </div>
 
         </div>
+        {% endif %}
 
     </div>
 
-
-    {% if user.is_authenticated %}
-    <!-- ___________________________MODAL FORMULARIO______________________________ -->
-    <div id="modalForm" class="modal oculto">
-        <div class="modal-content2">
-            <form method="post" id="formulario" enctype="multipart/form-data" onsubmit="return validar()">{% csrf_token %}
-                <div class="error oculto" id="error">
-                    <p>error</p>
-                </div>
-                <div class="informe palido" id="post-info">
-                    <div class="entrada">
-                        <h4>Título Publicación</h4>
-                        <input type="text" name="title" id="title" required placeholder="Ingrese un título">
-
-                        <select name="tipo-pub" id="tipo-pub" required>
-                            <option value="">Seleccione su tipo de publicación</option>
-                            <option value="1">Perdí mi mascota</option>
-                            <option value="2">Encontre una mascota</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="informe palido" id="domicilio">
-                    <h3>Datos del Domicilio</h3>
-                    <div class="entrada">
-                        <h4>Región:</h4>
-                        <select name="region" id="region" required onchange="comunasgenerate()">
-                            <option value="">Seleccione su Region</option>
-                            <option value="Región Metropolitana de Santiago">Región Metropolitana de Santiago</option>
-                            <option value="Región de Arica y Parinacota">Región de Arica y Parinacota</option>
-                            <option value="Región de Tarapacá">Región de Tarapacá</option>
-                            <option value="Región de Antofagasta">Región de Antofagasta</option>
-                            <option value="Región de Atacama">Región de Atacama</option>
-                            <option value="Región de Coquimbo">Región de Coquimbo</option>
-                            <option value="Región de Valparaíso">Región de Valparaíso</option>
-                            <option value="Región del Libertador Gral. Bernardo O Higgins">Región del Libertador Gral.
-                                Bernardo O Higgins</option>
-                            <option value="Región del Maule">Región del Maule</option>
-                            <option value="Región de Ñuble">Región de Ñuble</option>
-                            <option value="Región del Biobío">Región del Biobío</option>
-                            <option value="Región de la Araucanía">Región de la Araucanía</option>
-                            <option value="Región de Los Ríos">Región de Los Ríos</option>
-                            <option value="Región de Los Lagos">Región de Los Lagos</option>
-                            <option value="Región Aisén del Gral. Carlos Ibáñez del Campo">Región Aisén del Gral. Carlos
-                                Ibáñez del Campo</option>
-                            <option value="Región de Magallanes y de la Antártica Chilena">Región de Magallanes y de la
-                                Antártica Chilena</option>
-                        </select>
-
-                        <h4>Comuna:</h4>
-                        <select name="comuna" id="comuna" required>
-                            <option value="">Seleccione su Comuna</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="informe palido">
-                    <div class="palido">
-                        <h3>Informacion Mascota</h3>
-                        <div class="entrada">
-                            <h4>Tipo:</h4>
-                            <select name="tipo-mascota" required onchange="addOtro(this)">
-                                <option value="">Seleccione el tipo</option>
-                                <option value="perro">perro</option>
-                                <option value="gato">gato</option>
-                                <option value="pez">pez</option>
-                                <option value="tortuga">tortuga</option>
-                                <option value="hámster">hámster</option>
-                                <option value="loro">loro</option>
-                                <option value="iguana">iguana</option>
-                                <option value="araña">araña</option>
-                                <option value="otro">otro</option>
-                            </select>
-                            <input class="oculto" type="text" name="tipo-mascota-otro" size=40 maxlength=40>
-
-                            <h4>Sexo:</h4>
-                            <select name="sexo-mascota">
-                                <option value="">Seleccione el sexo</option>
-                                <option value="Macho">Macho</option>
-                                <option value="Hembra">Hembra</option>
-                                <option value="No Aplica">No Aplica</option>
-                            </select>
-                        </div>
-                        <h3>Comentarios </h3>
-                            <div class="entrada" style="justify-content: center; padding-bottom: 10px;">
-                                <label for="comentarios"> </label>
-                                <textarea name="comentarios" id="comentarios"
-                                    placeholder="Ingrese aquí información adicional." rows="3" cols="40"></textarea>
-                                
-                            </div>
-                            <div>
-                                <h4 style="width: 100%">Fotos:</h4>
-                                <div style="padding-left: 50px;">
-                                <label>
-                                    <input class="especial" type="file" name="foto-mascota">
-                                </div>
-                            </div>
-                    </div>
-                    <div class="buttons" style="width: 85%; padding-bottom: 50px;">
-                        <!-- <button type="button" onclick="duplicar('infomascota',this)">agregar otra mascota</button> -->
-                        <button type="button" onclick="achicar('modalForm')">Cancelar</button>
-                        <button type="button" onclick="abrir('modalConfirmacion')">Publicar Post</button>
-                    </div>
-                    <div id="modalConfirmacion" class="modal oculto">
-                        <div class="modal-content2" style="width: 60%">
-                            <h4>¿Esta seguro que desea enviar esta información?</h4>
-                            <div class="buttons" style="width: 85%; padding-bottom: 50px;">
-                                <button type="button" onclick="achicar('modalConfirmacion')">No estoy seguro</button>
-                                <button type="submit" onclick="achicarDos()">Si, estoy total y absolutamente
-                                    seguro</button>
-                            </div>
-                        </div>
-                    </div>
-
-            </form>
+    <!-- ___________________________MODAL Disclaimer______________________________ -->
+    <div id="modalDisclaimer" class="modal oculto">
+        <div class="modal-disclaimer" style="width: 60%">
+            <h4>Debe ser mayor de para acceder a la sección de Mascotas en Adopción, ¿Desea continuar?</h4>
+            <div class="buttons" style="width: 85%; padding-bottom: 50px;">
+                <a class="link" href="{% url 'inicio' %}">
+                    <button type=button>
+                        No, volver al inicio
+                    </button>
+                </a>
+                <a class="link" href="{% url 'avisos_adopcion' %}">
+                    <button type=button>
+                        Si, estoy seguro
+                    </button>
+                </a>
+            </div>
         </div>
     </div>
-    {% endif %}
+
 </body>
 
 </html>

@@ -26,6 +26,7 @@ urlpatterns = [
     path('logout/', logout_user, name='logout_user'),
     path('mascotas_perdidas/', avisos_mascotas_perdidas, name= 'mascotas_perdidas'),
     path('formulario_adopcion/', adoption_form, name='formulario_adopcion'),
+    path('formulario_perdidas/', report_form, name='formulario_perdidas'),
     path('post/<pk>/mp_remove/', mp_remove, name='mp_remove'),
     path('post/<pk>/adopcion_remove/', adopcion_remove, name='adopcion_remove'),
     path('avisos_adopcion/', avisos_adopcion, name='avisos_adopcion'),

@@ -37,6 +37,7 @@ button{
     text-decoration: none;
     font-size: 17px;
     color: black;
+    margin: auto 0;
 }
 
 .link:hover {
@@ -63,27 +64,55 @@ label {
     width: 100px;
 }
 
+.portada {
+    width: 80vw;
+    margin: auto;
+}
+
+.portada img {
+    width: 100%;
+}
+
 #barra{
-    list-style: none;
-    overflow: hidden;
-    background-color: #f6f6f6;
-    margin-left: 100px;
-    margin-right: 100px;
-    }
+  width: 87vw;
+  list-style: none;
+  overflow: hidden;
+  background-color: #f6f6f6;
+  margin: auto;
+  display: flex;
+  margin-bottom: 10px;
+}
     
+#barra li {
+    width: 29vw;
+}
+
 #barra li a{
-    float: left;
-    text-align: center;
-    padding: 20px 10%;
-    text-decoration: none;
-    font-size: 17px;
-    color: black;
-    }
+  width: 100%;
+  float: left;
+  text-align: center;
+  padding: 20px 10px;
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+}
 
 #barra li a:hover{
-    background-color: #c8c8c8;
-    color: black;
-    }
+  background-color: #c8c8c8;
+  color: black;
+}
 
+.orange {
+  background: #f29d46;
+}
 
+.false-link {
+  width: 100%;
+  float: left;
+  text-align: center;
+  padding: 20px 10px;
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+}
 

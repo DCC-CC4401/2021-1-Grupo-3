@@ -14,57 +14,87 @@
 <body>
     {% include "superior.html"%}
 
-    <!-- TABS-->
-    <div class=tabs>
-        <button class="tablink" onclick="openPage('Todos_los_Avisos_Adopcion', this, '#f29d46')" id="defaultOpen">Todos los
-            Avisos</button>
-        <button class="tablink" onclick="openPage('Mis_Avisos_Adopcion', this, '#f29d46')">Mis Avisos</button>
+    <div>
+        <ul id="barra">
+            <li><a class="link" href="{% url 'inicio' %}">Inicio</a> </li>
+            <li><a class="link" href="{% url 'mascotas_perdidas' %}">Mascotas Perdidas</a> </li>
+            <li><a class="link orange" href="{% url 'avisos_adopcion' %}">Mascotas en Adopción</a> </li>
+        </ul>
     </div>
 
-    <div class=boton_adopcion>
-        <div id=boton_adoptar>
-            <a href="{% url 'formulario_adopcion' %}"><button type="button">Dar en Adopción</button></a>
+    <!-- TABS-->
+    <div class=tabs>
+        <div>
+            <button class="tablink" onclick="openPage('Todos_los_Avisos_Adopcion', this, '#f29d46')" id="defaultOpen">
+                Todos los Avisos
+            </button>
+            {% if user.is_authenticated %}
+            <button class="tablink" onclick="openPage('Mis_Avisos_Adopcion', this, '#f29d46')">Mis Avisos</button>
+            {% endif %}
         </div>
+        {% if user.is_authenticated %}
+        <div>
+            <a href="{% url 'formulario_adopcion' %}">
+                <img class="img-button" src="{% static 'images/boton_adoptar.jpg' %}" alt="">
+            </a>
+        </div>
+        {% endif %}
     </div>
 
     <div id="Todos_los_Avisos_Adopcion" class="tabcontent">
-        <h3>Todos los Avisos</h3>
-        <div style="padding-top: 15px; padding-bottom: 15px;">
-            <form method="GET">
-                <input type="text" placeholder="Buscar" name="buscar">
-                <button type="submit"> Buscar </button>
-            </form>
+        <div class="title-nav">
+            <h3>Todos los Avisos</h3>
+            <div style="padding-top: 15px; padding-bottom: 15px;">
+                <form method="GET">
+                    <input type="text" placeholder="Buscar" name="buscar">
+                    <button type="submit"> Buscar </button>
+                </form>
+            </div>
         </div>
-        {% block content %}
-        {% for aviso_adopcion in todos_adopcion%}
-        <img src="{{aviso_adopcion.Foto.url}}" alt="" width="50%">
-        <h2>{{aviso_adopcion.Caracteristicas}}</h2>
-        <div class=boton_ver>
-            <button class="boton_aviso" onclick="location.href=
-            '/aviso_adopcion_en_detalle?id={{aviso_adopcion.Id}}'">Ver mas</button> 
+        <div class="avisos">
+            {% block content %}
+            {% for aviso_adopcion in todos_adopcion%}
+            <div class="aviso">
+                <img src="{{aviso_adopcion.Foto.url}}" alt="" width="50%">
+                <h2>{{aviso_adopcion.Caracteristicas}}</h2>
+
+                <h3>({{aviso_adopcion.Fecha}})</h3>
+                <h3>{{aviso_adopcion.Region}}</h3>
+                <h3>{{aviso_adopcion.Comuna}}</h3>
+                <div class=boton_ver>
+                    <button class="boton_aviso" onclick="location.href=
+                            '/aviso_adopcion_en_detalle?id={{aviso_adopcion.Id}}'">Ver mas</button>
+                </div>
+            </div>
+            {% endfor %}
+            {% endblock %}
         </div>
-        <h3>({{aviso_adopcion.Fecha}})</h3>
-        <h3>{{aviso_adopcion.Region}}</h3>
-        <h3>{{aviso_adopcion.Comuna}}</h3>
-        {% endfor %}
-        {% endblock %}
 
     </div>
 
     <div id="Mis_Avisos_Adopcion" class="tabcontent">
-        <h3>Mis Avisos</h3>
-        {% for aviso_adopcion in mis_avisos_adopcion%}
-        <img src="{{aviso_adopcion.Foto.url}}" alt="" width="50%">
-        <button class="btn"><i class="fa fa-trash" ></i> <a href="{% url 'adopcion_remove' pk=aviso_adopcion.pk %}" style="text-decoration: none; color: white;"> Eliminar </a> </button>
-        <h2>{{aviso_adopcion.Caracteristicas}}</h2>
-        <div class=boton_ver>
-            <button class="boton_aviso" onclick="location.href=
-            '/aviso_adopcion_en_detalle?id={{aviso_adopcion.Id}}'">Ver mas</button> 
+        <div class="title-nav">
+            <h3>Mis Avisos</h3>
         </div>
-        <h3>({{aviso_adopcion.Fecha}})</h3>
-        <h3>{{aviso_adopcion.Region}}</h3>
-        <h3>{{aviso_adopcion.Comuna}}</h3>
-        {% endfor %}
+        <div class="avisos">
+            {% for aviso_adopcion in mis_avisos_adopcion%}
+            <div class="aviso">
+                <img src="{{aviso_adopcion.Foto.url}}" alt="" width="50%">
+                <h2>{{aviso_adopcion.Caracteristicas}}</h2>
+                <h3>({{aviso_adopcion.Fecha}})</h3>
+                <h3>{{aviso_adopcion.Region}}</h3>
+                <h3>{{aviso_adopcion.Comuna}}</h3>
+                <div class=boton_ver>
+                    <button class="boton_aviso" onclick="location.href=
+                    '/aviso_adopcion_en_detalle?id={{aviso_adopcion.Id}}'">Ver mas</button>
+                    <button class="btn"><i class="fa fa-trash"></i>
+                        <a href="{% url 'adopcion_remove' pk=aviso_adopcion.pk %}"
+                            style="text-decoration: none; color: white;">
+                            Eliminar </a> </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 
     <!-- SCRIPT TABS -->

@@ -11,7 +11,7 @@
 <body>
     <div class="topnav">
 
-        <img src="{% static 'images/logo_1.png' %}" alt="">
+        <img src="{% static 'images/logo_n.png' %}" alt="">
         <div class="login">
             {% if user.is_authenticated %}
 
@@ -39,16 +39,8 @@
         </div>
     </div>
 
-    <div>
-        <img src="{% static 'images/header.png' %}" alt="">
-    </div>
-
-    <div>
-        <ul id="barra">
-            <li><a class="link" href="{% url 'inicio' %}">Inicio</a> </li>
-            <li><a class="link" href="{% url 'mascotas_perdidas' %}">Mascotas Perdidas</a> </li>
-            <li><a class="link" href="{% url 'avisos_adopcion' %}">Mascotas en Adopción</a> </li>
-        </ul>
+    <div class="portada">
+        <img src="{% static 'images/portada.jpg' %}" alt="">
     </div>
 
 </body>

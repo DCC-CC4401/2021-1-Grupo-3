@@ -115,6 +115,25 @@ def adoption_form(request):
     else:
         return HttpResponseRedirect('/register_user')
 
+def report_form(request):
+    if request.user.is_authenticated:
+        if request.method == 'GET': #si estamos accediendo a la página
+            return render(request,"report_form.html")
+        if request.method == 'POST':
+            region = request.POST['region']
+            comuna = request.POST['comuna']
+            Tipo_Animal = request.POST['tipo-mascota']
+            sexo = request.POST['sexo-mascota']
+            foto = request.FILES['foto-mascota']
+            motivo = request.POST['tipo-pub']
+            titulo = request.POST['title']
+            comentario = request.POST['comentarios']
+            aviso = Aviso.objects.create(Motivo=motivo, Titulo=titulo,Comuna=comuna, Region=region, Tipo_Animal=Tipo_Animal,
+            Sexo=sexo, Nombre_De_Usuario=request.user, Descripcion=comentario, Foto=foto)
+        return HttpResponseRedirect('/inicio')
+    else:
+        return HttpResponseRedirect('/register_user')
+
 def mp_remove(request, pk):
     if request.user.is_authenticated:
         post = get_object_or_404(Aviso, pk=pk)
