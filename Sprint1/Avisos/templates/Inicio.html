@@ -16,7 +16,7 @@
         <ul id="barra">
             <li><a class="link orange" href="{% url 'inicio' %}">Inicio</a> </li>
             <li><a class="link" href="{% url 'mascotas_perdidas' %}">Mascotas Perdidas</a> </li>
-            <li><a class="link" href="{% url 'avisos_adopcion' %}">Mascotas en Adopción</a> </li>
+            <li onclick="abrir('modalDisclaimer')"><span class="false-link">Mascotas en Adopción</span></li>
         </ul>
     </div>
 
@@ -51,9 +51,31 @@
                     <img class="img-button" src="{% static 'images/boton2.jpg' %}" alt="">
                 </a>
             </div>
+
         </div>
         {% endif %}
+
     </div>
+
+    <!-- ___________________________MODAL Disclaimer______________________________ -->
+    <div id="modalDisclaimer" class="modal oculto">
+        <div class="modal-disclaimer" style="width: 60%">
+            <h4>Debe ser mayor de para acceder a la sección de Mascotas en Adopción, ¿Desea continuar?</h4>
+            <div class="buttons" style="width: 85%; padding-bottom: 50px;">
+                <a class="link" href="{% url 'inicio' %}">
+                    <button type=button>
+                        No, volver al inicio
+                    </button>
+                </a>
+                <a class="link" href="{% url 'avisos_adopcion' %}">
+                    <button type=button>
+                        Si, estoy seguro
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
