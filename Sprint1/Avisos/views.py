@@ -120,17 +120,16 @@ def report_form(request):
         if request.method == 'GET': #si estamos accediendo a la página
             return render(request,"report_form.html")
         if request.method == 'POST':
-            titulo = request.POST['title']
-            tipo_pub = request.POST['tipo-pub']
             region = request.POST['region']
             comuna = request.POST['comuna']
             Tipo_Animal = request.POST['tipo-mascota']
             sexo = request.POST['sexo-mascota']
             foto = request.FILES['foto-mascota']
-            caracteristicas = request.POST['caracteristicas']
-            # adopcion = Adopcion.objects.create(Comuna=comuna, Region=region, Tipo_Animal=Tipo_Animal, Sexo=sexo,
-            # Nombre_De_Usuario=request.user, Caracteristicas=caracteristicas, Comentarios=comentario, Foto=foto,
-            # Numero_Telefonico=numero, Edad=edad) ///hay que poner esto
+            motivo = request.POST['tipo-pub']
+            titulo = request.POST['title']
+            comentario = request.POST['comentarios']
+            aviso = Aviso.objects.create(Motivo=motivo, Titulo=titulo,Comuna=comuna, Region=region, Tipo_Animal=Tipo_Animal,
+            Sexo=sexo, Nombre_De_Usuario=request.user, Descripcion=comentario, Foto=foto)
         return HttpResponseRedirect('/inicio')
     else:
         return HttpResponseRedirect('/register_user')
