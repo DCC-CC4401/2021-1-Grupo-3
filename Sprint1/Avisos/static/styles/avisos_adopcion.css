@@ -1,13 +1,13 @@
 .boton_ver{
     float : center;
-    width: 30%;
+    width: 100%;
+    justify-content: space-between;
 }
 
-.boton_adopcion{
-    float: right;
+.boton_ver button {
     width: 30%;
+    margin: 0 5px;
 }
-
 
 .mitad_izq{
     float: left;
@@ -18,6 +18,3 @@
     float: right;
     width: 50%;
 }
-
-#Todos_los_Avisos_Adopcion {background-color: #f6f6f6;}
-#Mis_Avisos_Adopcion {background-color: #f6f6f6;}

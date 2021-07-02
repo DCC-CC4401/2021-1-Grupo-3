@@ -1,17 +1,16 @@
 body{
-    background:linear-gradient(45deg, #a7e351,#32e7c8);
+    background: #a7e351;
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100%;
 }
 .content{
-    height: 80vh;
     width: 85%;
     margin: auto;
     margin-top: 10vh;
+    padding-bottom: 5vh;
     background: white;
-    border-radius: 25px 0 25px 0;
-    border:#000 solid 3px;
+    border:#000 solid 1px;
 }
 
 h1 {
@@ -63,3 +62,4 @@ button{
     padding: 5px 25px;
     width: auto;
 }
+

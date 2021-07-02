@@ -12,53 +12,88 @@
 <body>
     {% include "superior.html"%}
 
+    <div>
+        <ul id="barra">
+            <li><a class="link" href="{% url 'inicio' %}">Inicio</a> </li>
+            <li><a class="link orange" href="{% url 'mascotas_perdidas' %}">Mascotas Perdidas</a> </li>
+            <li><a class="link" href="{% url 'avisos_adopcion' %}">Mascotas en Adopción</a> </li>
+        </ul>
+    </div>
+
     <!-- TABS-->
-    <div class=tabs>
-        <button class="tablink" onclick="openPage('Todos_los_Avisos', this, '#f29d46')" id="defaultOpen">Todos los
-            Avisos</button>
-        {% if user.is_authenticated %}
-        <button class="tablink" onclick="openPage('Mis_Avisos', this, '#f29d46')">Mis Avisos</button>
-        {% endif %}
+    <div>
+        <div class=tabs>
+            <div>
+                <button class="tablink" onclick="openPage('Todos_los_Avisos', this, '#f29d46')" id="defaultOpen">
+                    <span> Todos los Avisos</span>
+                </button>
+                {% if user.is_authenticated %}
+                <button class="tablink" onclick="openPage('Mis_Avisos', this, '#f29d46')"> <span>Mis
+                        Avisos</span></button>
+                {% endif %}
+            </div>
+            {% if user.is_authenticated %}
+            <div>
+                <a href="{% url 'formulario_perdidas' %}">
+                    <img class="img-button" src="{% static 'images/boton_busqueda.jpg' %}" alt="">
+                </a>
+            </div>
+            {% endif %}
+        </div>
     </div>
 
     <div id="Todos_los_Avisos" class="tabcontent">
-        <h3>Todos los Avisos</h3>
-        <div style="padding-top: 15px; padding-bottom: 15px;">
-            <form method="GET">
-                <input type="text" placeholder="Buscar" name="buscar">
-                <button type="submit"> Buscar </button>
-            </form>
+        <div class="title-nav">
+            <span class="title">Todos los Avisos</span>
+            <div style="padding-top: 15px; padding-bottom: 15px;">
+                <form method="GET">
+                    <input type="text" placeholder="Buscar" name="buscar">
+                    <button type="submit"> Buscar </button>
+                </form>
+            </div>
         </div>
-
-        {% block content %}
-        {% for aviso in todos%}
-            <h2>{{aviso.Titulo}}</h2>
-            <h3>{{aviso.Comuna}}, {{aviso.Region}} ({{aviso.Fecha}})</h3>
-            <p> {{aviso.Descripcion}} </p>
-            <h3>Detalles:</h3>
-            <p>Animal: {{aviso.Tipo_Animal}}</p>
-            <p>Sexo: {{aviso.Sexo}}</p>
-            <img src="{{aviso.Foto.url}}" alt="" width="50%">
-        {% endfor %}
-        {% endblock %}
+        <div class="avisos">
+            {% block content %}
+            {% for aviso in todos%}
+            <div class="aviso">
+                <img src="{{aviso.Foto.url}}" alt="">
+                <h2>{{aviso.Titulo}}</h2>
+                <h3>{{aviso.Comuna}}, {{aviso.Region}} ({{aviso.Fecha}})</h3>
+                <p> {{aviso.Descripcion}} </p>
+                <h3>Detalles:</h3>
+                <div class="detalles">
+                    <p>Animal: {{aviso.Tipo_Animal}}</p>
+                    <p>Sexo: {{aviso.Sexo}}</p>
+                </div>
+            </div>
+            {% endfor %}
+            {% endblock %}
+        </div>
 
     </div>
 
 
     {% if user.is_authenticated %}
     <div id="Mis_Avisos" class="tabcontent">
-        <h3>Mis Avisos</h3>
+        <span class="title">Mis Avisos</span>
 
-        {% for aviso in mis_avisos%}
-            <h2>{{aviso.Titulo}}</h2>
-            <button class="btn"><i class="fa fa-trash" ></i> <a href="{% url 'mp_remove' pk=aviso.pk %}" style="text-decoration: none; color: white;"> Eliminar </a> </button>
-            <h3>{{aviso.Comuna}}, {{aviso.Region}} ({{aviso.Fecha}})</h3>
-            <p> {{aviso.Descripcion}} </p>
-            <h3>Detalles:</h3>
-            <p>Animal: {{aviso.Tipo_Animal}}</p>
-            <p>Sexo: {{aviso.Sexo}}</p>
-            <img src="{{aviso.Foto.url}}" alt="" width="50%">
-        {% endfor %}
+        <div class="avisos">
+            {% for aviso in mis_avisos%}
+            <div class="aviso">
+                <img src="{{aviso.Foto.url}}" alt="">
+                <h2>{{aviso.Titulo}}</h2>
+                <button class="btn"><i class="fa fa-trash"></i> <a href="{% url 'mp_remove' pk=aviso.pk %}"
+                        style="text-decoration: none; color: white;"> Eliminar </a> </button>
+                <h3>{{aviso.Comuna}}, {{aviso.Region}} ({{aviso.Fecha}})</h3>
+                <p> {{aviso.Descripcion}} </p>
+                <h3>Detalles:</h3>
+                <div class="detalles">
+                    <p>Animal: {{aviso.Tipo_Animal}}</p>
+                    <p>Sexo: {{aviso.Sexo}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
 
     </div>
     {% endif %}
